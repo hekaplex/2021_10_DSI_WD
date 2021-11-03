@@ -42,9 +42,11 @@ def parse_data(source: str):
     soup = BeautifulSoup(markup=source, features='html.parser')
     tags = soup.find_all('td', class_='ng-scope')
     # print(tags)
-    # print(tags[0].string)
+    # print(tags[0].string.strip())
 
-    dataline = [tags[0].string, tags[1].string, tags[2].string, tags[3].string, tags[5].string, tags[8].string]
+    dataline = [tags[0].string.strip(), tags[1].string.strip(),
+                tags[2].string.strip(), tags[3].string.strip(),
+                tags[5].string.strip(), tags[8].string.strip()]
     print(dataline)
     datalist.append(dataline)
 
@@ -105,3 +107,11 @@ if __name__ == "__main__":
     scrape(2)
 
     print('fin')
+
+# https://familysearch.org/ark:/61903/3:1:33S7-9PJ1-QY7J
+# None
+# [' Feltner Horn ', ' Male ', ' 17 ', ' 09 Oct 1918 ', ' Single ', ' Maranda Angel ']
+# https://familysearch.org/ark:/61903/3:1:33S7-9PJ1-S92D
+# None
+# [' Clarence Vincent Buell ', ' Male ', ' 1 ', ' 05 Feb 1918 ', ' white ', ' 05 Aug 1916 ']
+# fin

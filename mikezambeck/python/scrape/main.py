@@ -34,7 +34,7 @@ def load_urls():
     return urls
 
 
-def parse_data(source: str):
+def parse_data(fp, source: str):
     global datalist
     # with open('./testRLCurl.html', 'r') as fp:
     #     soup = BeautifulSoup(fp, 'html.parser')
@@ -48,7 +48,9 @@ def parse_data(source: str):
                 tags[2].string.strip(), tags[3].string.strip(),
                 tags[5].string.strip(), tags[8].string.strip()]
     print(dataline)
-    datalist.append(dataline)
+
+    fp.writerow(dataline)
+    # datalist.append(dataline)
 
 # Name 0
 # Sex 1
@@ -87,20 +89,26 @@ def scrape(records_to_get = 0):
 
     time.sleep(5)
 
-    for i in range(records_to_get):
-        print(urls[i])
-        driver.get(urls[i])
-        # waiting for a data table tag + 1 sec might be efficient
-        wait.until(EC.presence_of_element_located((By.CSS_SELECTOR, 'td.ng-scope')))
-        time.sleep(1)
-        # otherwise, fall back on 5 sec delay
-        # time.sleep(5)
-        parse_data(driver.page_source)
+    fp = open(CURDIR + 'data.csv', 'w')
+    write = csv.writer(fp)
+    try:
+        for i in range(records_to_get):
+            print(urls[i])
+            driver.get(urls[i])
+            # waiting for a data table tag + 1 sec might be efficient
+            wait.until(EC.presence_of_element_located((By.CSS_SELECTOR, 'td.ng-scope')))
+            time.sleep(1)
+            # otherwise, fall back on 5 sec delay
+            # time.sleep(5)
+            parse_data(write, driver.page_source)
+    finally:
+        fp.close()
+        browser.close_browser()
 
     # save output
-    with open(CURDIR + 'data.csv', 'w') as fp:
-        write = csv.writer(fp)
-        write.writerows(datalist)
+    # with open(CURDIR + 'data.csv', 'w') as fp:
+    #     write = csv.writer(fp)
+    #     write.writerows(datalist)
 
 
 if __name__ == "__main__":

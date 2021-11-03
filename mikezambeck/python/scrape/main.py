@@ -85,13 +85,16 @@ def scrape(records_to_get = 0):
 
     driver.find_element(By.ID, 'login').click()
 
-    # hopefully page is loaded within 5 secs
     time.sleep(5)
 
     for i in range(records_to_get):
         print(urls[i])
         driver.get(urls[i])
-        time.sleep(5)
+        # waiting for a data table tag + 1 sec might be efficient
+        wait.until(EC.presence_of_element_located((By.CSS_SELECTOR, 'td.ng-scope')))
+        time.sleep(1)
+        # otherwise, fall back on 5 sec delay
+        # time.sleep(5)
         parse_data(driver.page_source)
 
     # save output
@@ -102,7 +105,9 @@ def scrape(records_to_get = 0):
 
 if __name__ == "__main__":
 
+    # parse urls from json file
     urls = load_urls()
+
     # how many records to try to read (keep it low for now)
     scrape(2)
 
@@ -113,3 +118,10 @@ if __name__ == "__main__":
 # https://familysearch.org/ark:/61903/3:1:33S7-9PJ1-S92D
 # ['Clarence Vincent Buell', 'Male', '1', '05 Feb 1918', 'white', '05 Aug 1916']
 # fin
+
+# Name 0
+# Sex 1
+# Age 2
+# Date of Death 3
+# Date of Birth 5
+# Document Number 8

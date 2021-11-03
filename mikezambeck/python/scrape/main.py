@@ -109,9 +109,7 @@ if __name__ == "__main__":
     print('fin')
 
 # https://familysearch.org/ark:/61903/3:1:33S7-9PJ1-QY7J
-# None
-# [' Feltner Horn ', ' Male ', ' 17 ', ' 09 Oct 1918 ', ' Single ', ' Maranda Angel ']
+# ['Feltner Horn', 'Male', '17', '09 Oct 1918', 'Single', 'Maranda Angel']
 # https://familysearch.org/ark:/61903/3:1:33S7-9PJ1-S92D
-# None
-# [' Clarence Vincent Buell ', ' Male ', ' 1 ', ' 05 Feb 1918 ', ' white ', ' 05 Aug 1916 ']
+# ['Clarence Vincent Buell', 'Male', '1', '05 Feb 1918', 'white', '05 Aug 1916']
 # fin

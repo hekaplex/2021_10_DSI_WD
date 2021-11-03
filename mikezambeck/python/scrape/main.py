@@ -15,7 +15,6 @@ from RPA.Browser.Selenium import Selenium
 
 CURDIR = os.getcwd() + '/'
 datalist = []
-
 login_url = 'https://familysearch.org'
 login_info = dotenv_values('.env')
 # login_info = {'username': 'username',
@@ -42,12 +41,12 @@ def parse_data(source: str):
 
     soup = BeautifulSoup(markup=source, features='html.parser')
     tags = soup.find_all('td', class_='ng-scope')
-    print(tags)
-    print(tags[0].string)
+    # print(tags)
+    # print(tags[0].string)
 
-    datalist.append([tags[0].string, tags[1].string, tags[2].string, tags[3].string, tags[5].string, tags[8].string])
-
-    # print(urls)
+    dataline = [tags[0].string, tags[1].string, tags[2].string, tags[3].string, tags[5].string, tags[8].string]
+    print(dataline)
+    datalist.append(dataline)
 
 # Name 0
 # Sex 1
@@ -57,8 +56,8 @@ def parse_data(source: str):
 # Document Number 8
 
 
-def scrape(urls, records_to_get = 0):
-    global datalist
+def scrape(records_to_get = 0):
+    # global datalist
 
     # initiate browser engine
     browser = Selenium()
@@ -88,11 +87,10 @@ def scrape(urls, records_to_get = 0):
     time.sleep(5)
 
     for i in range(records_to_get):
+        print(urls[i])
         driver.get(urls[i])
         time.sleep(5)
         parse_data(driver.page_source)
-
-    # time.sleep(30)
 
     # save output
     with open(CURDIR + 'data.csv', 'w') as fp:
@@ -103,7 +101,7 @@ def scrape(urls, records_to_get = 0):
 if __name__ == "__main__":
 
     urls = load_urls()
-    # integer is how many records to try to read (keep it low for now)
-    scrape(urls, 2)
+    # how many records to try to read (keep it low for now)
+    scrape(2)
 
     print('fin')

@@ -90,6 +90,7 @@ def scrape(records_to_get = 0):
     time.sleep(5)
 
     fp = open(CURDIR + 'data.csv', 'w')
+    fplog = open(CURDIR + 'log.txt', 'a')
     write = csv.writer(fp)
     try:
         for i in range(records_to_get):
@@ -101,8 +102,10 @@ def scrape(records_to_get = 0):
             # otherwise, fall back on 5 sec delay
             # time.sleep(5)
             parse_data(write, driver.page_source)
+            fplog.writelines(urls[i] + '\n')
     finally:
         fp.close()
+        fplog.close()
         browser.close_browser()
 
     # save output

@@ -13,12 +13,12 @@ pygame.display.set_icon(icon)
 
 # Player
 playerImg = pygame.image.load('player.png')
-playerX = 370
+playerX = 350
 playerY = 480
 
 
 def player():
-    screen.bilt(playerImg, (playerX, playerY))
+    screen.blit(playerImg, (playerX, playerY))
 
 
 # Game Loop
@@ -26,7 +26,7 @@ running = True
 while running:
    
     # RGB = Red, Green, Blue
-    screen.fill((0, 0, 0,))
+    screen.fill((0, 0, 0))
     
     for event in pygame.event.get():
         if event.type == pygame.QUIT:

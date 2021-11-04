@@ -13,12 +13,13 @@ pygame.display.set_icon(icon)
 
 # Player
 playerImg = pygame.image.load('player.png')
-playerX = 350
+playerX = 370
 playerY = 480
 
 
+
 def player():
-    screen.blit(playerImg, (playerX, playerY))
+    screen.blit(playerImg, (x, y))
 
 
 # Game Loop
@@ -27,12 +28,13 @@ while running:
    
     # RGB = Red, Green, Blue
     screen.fill((0, 0, 0))
-    
+    playerY -= 0.1
+    print (playerX)
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
 
 
 
-player()
+player(playerX,playerY)
 pygame.display.update()

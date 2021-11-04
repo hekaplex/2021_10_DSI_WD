@@ -1,3 +1,4 @@
+import datetime
 import json
 from bs4 import BeautifulSoup
 import os
@@ -63,6 +64,8 @@ def parse_data(fp, source: str):
 def scrape(records_to_get = 0):
     # global datalist
 
+    print(f'Fetching {records_to_get} records, Ctrl-C to abort.')
+
     # initiate browser engine
     browser = Selenium()
     browser.set_download_directory(CURDIR)
@@ -94,15 +97,20 @@ def scrape(records_to_get = 0):
     write = csv.writer(fp)
     try:
         for i in range(records_to_get):
-            print(urls[i])
-            driver.get(urls[i])
-            # waiting for a data table tag + 1 sec might be efficient
-            wait.until(EC.presence_of_element_located((By.CSS_SELECTOR, 'td.ng-scope')))
-            time.sleep(1)
-            # otherwise, fall back on 5 sec delay
-            # time.sleep(5)
-            parse_data(write, driver.page_source)
-            fplog.writelines(urls[i] + '\n')
+            try:
+                print(urls[i])
+                driver.get(urls[i])
+                # waiting for a data table tag + 1 sec might be efficient
+                wait.until(EC.presence_of_element_located((By.CSS_SELECTOR, 'td.ng-scope')))
+                time.sleep(1)
+                # otherwise, fall back on 5 sec delay
+                # time.sleep(5)
+                parse_data(write, driver.page_source)
+                now = datetime.datetime.now()
+                fplog.writelines(f'{now:%Y-%m-%d %H:%M} {urls[i]}' + '\n')
+            except KeyboardInterrupt:
+                print('User terminated.')
+                break
     finally:
         fp.close()
         fplog.close()

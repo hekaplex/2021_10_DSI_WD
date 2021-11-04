@@ -23,16 +23,16 @@ login_info = dotenv_values('.env')
 
 
 def load_urls():
-    urls = []
+
     with open('./OH.json', 'r') as fp:
         contents = json.load(fp)
 
     # make list of urls
-    urls = ([item.get('image_url') for item in contents['people']])
+    url_list = [item.get('image_url') for item in contents['people']]
 
     # remove header row
-    urls.pop(0)
-    return urls
+    url_list.pop(0)
+    return url_list
 
 
 def parse_data(fp, source: str):

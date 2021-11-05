@@ -21,20 +21,20 @@ playerY = 480
 def player(x, y):
     screen.blit(playerImg, (x, y))
 
-
 # Game Loop
 running = True
 while running:
    
-    # RGB = Red, Green, Blue
+    # RGB (Red, Green, Blue)
     screen.fill((0, 0, 0))
-    #playerX += 0.2
-
+    
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
 
-
+# if keystroke is pressed check whether its right or left
 
 player(playerX,playerY)
 pygame.display.update()
+
+

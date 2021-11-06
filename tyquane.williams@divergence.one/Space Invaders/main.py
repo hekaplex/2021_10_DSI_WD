@@ -20,7 +20,7 @@ playerX_change = 0
 # Enemy
 enemyImg = pygame.image.load('enemy.png')
 enemyX = 370
-enemyY = 480
+enemyY = 50
 enemyX_change = 0
 
 

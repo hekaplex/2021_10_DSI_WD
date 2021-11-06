@@ -1,4 +1,5 @@
 import pygame
+import random
 
 # Intialize the pygame
 pygame.init()
@@ -19,8 +20,8 @@ playerX_change = 0
 
 # Enemy
 enemyImg = pygame.image.load('enemy.png')
-enemyX = 370
-enemyY = 50
+enemyX = random.randint(0, 800)
+enemyY = random.randint(50, 150)
 enemyX_change = 0
 
 

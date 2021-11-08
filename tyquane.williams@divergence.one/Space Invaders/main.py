@@ -29,7 +29,6 @@ enemyX_change = 0.4
 enemyY_change = 40
 
 # Bullet
-
 # Ready - You can't see the bullet on the screen 
 # Fire - The bullet is currently moving
 
@@ -72,7 +71,10 @@ while running:
             if event.key == pygame.K_RIGHT:
                 playerX_change = 0.5
             if event.key == pygame.K_SPACE:
-                fire_bullet(playerX, bulletY)
+                if bullet_state is "ready":
+                    # Get the current x coordinate of the spaceship
+                    bulletX = playerX
+                    fire_bullet(bulletX, bulletY)
         
         if event.type == pygame.KEYUP:
             if event.key == pygame.K_LEFT or event.key == pygame.K_RIGHT:
@@ -101,12 +103,12 @@ while running:
         enemyY += enemyY_change
 
     # Bullet Movement
-    if bulletY <=0 :
+    if bulletY <=0:
         bulletY = 480
         bullet_state = "ready"
-        
+
     if bullet_state is "fire": 
-        fire_bullet(playerX, bulletY)
+        fire_bullet(bulletX, bulletY)
         bulletY -= bulletY_change
 
     player(playerX, playerY)

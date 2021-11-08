@@ -113,5 +113,6 @@ while running:
 
     player(playerX, playerY)
     enemy(enemyX, enemyY)
+    
     pygame.display.update() 
 

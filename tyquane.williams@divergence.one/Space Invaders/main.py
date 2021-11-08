@@ -1,4 +1,5 @@
 import pygame
+import math
 import random
 
 # Intialize the pygame

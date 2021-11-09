@@ -41,16 +41,40 @@ ALTER TABLE [dbo].[FactInternetSales] CHECK CONSTRAINT [FK_FactInternetSales_Dim
 GO
 
 select 
+		--grouping/tuple/slicer/dimension (string or enumeration)
 		s.[SalesReasonKey]
+		--metric/aggregate/measure + numeric
 		, count(*) quantity
 from 
 		[dbo].[FactInternetSales] f
-inner join 
+inner join
+--left outer join
+--right outer join
+--outer join
 		[dbo].[FactInternetSalesReason] s
 on 
-		s.[SalesOrderNumber] = f.SalesOrderNumber
+--composite key = multiple columns
+
+		--primary key
+		s.[SalesOrderNumber] 
+		= 
+		--foreign key
+		f.SalesOrderNumber
 and 
 		s.[SalesOrderLineNumber] = f.SalesOrderLineNumber
+where f.SalesAmount < 10
 group by 
 		s.[SalesReasonKey]
-
+having count(*) < 5000
+order by
+		--count(*)
+		quantity desc
+/*
+1	47733
+2	7390
+10	3653
+5	1818
+6	1640
+9	1551
+4	730
+*/

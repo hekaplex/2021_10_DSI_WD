@@ -45,10 +45,9 @@ for i in range(num_of_enemies):
     enemyY_change.append(40)
 
 
-# Bullet
 # Ready - You can't see the bullet on the screen 
 # Fire - The bullet is currently moving
-
+# Bullet
 bulletImg = pygame.image.load('bullet.png')
 bulletX = 0
 bulletY = 480
@@ -56,11 +55,10 @@ bulletX_change = 0
 bulletY_change = 10
 bullet_state = "ready"
 
-# Font and Score
+# Score and Font
 
 score_value = 0
 font = pygame.font.Font('freesansbold.ttf', 32)
-
 textX = 10
 testY = 10
 
@@ -145,7 +143,7 @@ while running:
 
     # Game Over
         if enemyY[i] > 440:
-        # This is where the enemy will be destroyed if they reach here
+            # This is where the enemy will be destroyed if they reaches 440
             for j in range(num_of_enemies):
                 enemyY[j] = 2000
             game_over_text()

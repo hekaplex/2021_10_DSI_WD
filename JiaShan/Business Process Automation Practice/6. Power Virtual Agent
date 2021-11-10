@@ -1,0 +1,5 @@
+Created a bot using Power Virtual Agents(https://web.powerva.microsoft.com/)
+Generated a order status topic, added trigers and customized the bot.
+Used Power Automate(https://us.flow.microsoft.com/) to create flows that connects CDS database with the bot.
+The bot now can check CDS database and output information regarding order status topic based on customers' input.
+The bot will redirect customers to live agents if no match is found in topic triger phrases or CDS database.

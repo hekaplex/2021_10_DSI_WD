@@ -52,8 +52,8 @@ def parse_data(fp, source: str):
     else:
         for i in range(len(tags)):
             dataline.append(tags[i].string.strip())
-            for i in range(20 - len(tags)):
-                dataline.append('')
+        for i in range(20 - len(tags)):
+            dataline.append('')
 
     # dataline = [tags[0].string.strip(), tags[1].string.strip(),
     #             tags[2].string.strip(), tags[3].string.strip(),

@@ -1,0 +1,7 @@
+Created Cloud flow using the Moderan Approvals service to automate the request approval workflow.
+The flow was created through Power Automate(https://us.flow.microsoft.com/)
+Conneted with CDS table and integrated the flow with the Canvas APP "JiaShan_DeivceOrderApp".
+Configured the logic process and tested the flow.
+The flow allows administrater or manager recieve an automatic notification when a customer put in a requst.
+It also enables the administrater or manager to make a decision about the request.
+The requestor will recieve an automatic email when a decision is made.

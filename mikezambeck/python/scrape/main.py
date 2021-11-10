@@ -45,9 +45,19 @@ def parse_data(fp, source: str):
     # print(tags)
     # print(tags[0].string.strip())
 
-    dataline = [tags[0].string.strip(), tags[1].string.strip(),
-                tags[2].string.strip(), tags[3].string.strip(),
-                tags[5].string.strip(), tags[8].string.strip()]
+    dataline = []
+    if len(tags) > 20:
+        for i in range(20):
+            dataline.append(tags[i].string.strip())
+    else:
+        for i in range(len(tags)):
+            dataline.append(tags[i].string.strip())
+            for i in range(20 - len(tags)):
+                dataline.append('')
+
+    # dataline = [tags[0].string.strip(), tags[1].string.strip(),
+    #             tags[2].string.strip(), tags[3].string.strip(),
+    #             tags[5].string.strip(), tags[8].string.strip()]
     print(dataline)
 
     fp.writerow(dataline)
@@ -71,6 +81,7 @@ def scrape(records_to_get = 0):
     browser.set_download_directory(CURDIR)
     # set to True if you don't want to see the action (once working probably better to be headless)
     browser.open_available_browser(headless=False)
+
 
     driver: webdriver = browser.driver
     driver.get(login_url)
@@ -98,6 +109,7 @@ def scrape(records_to_get = 0):
     try:
         for i in range(records_to_get):
             try:
+                now = datetime.datetime.now()
                 print(urls[i])
                 driver.get(urls[i])
                 # waiting for a data table tag + 1 sec might be efficient
@@ -106,11 +118,12 @@ def scrape(records_to_get = 0):
                 # otherwise, fall back on 5 sec delay
                 # time.sleep(5)
                 parse_data(write, driver.page_source)
-                now = datetime.datetime.now()
                 fplog.writelines(f'{now:%Y-%m-%d %H:%M} {urls[i]}' + '\n')
             except KeyboardInterrupt:
                 print('User terminated.')
                 break
+            except:
+                fplog.writelines(f'{now:%Y-%m-%d %H:%M} Exception: {urls[i]}' + '\n')
     finally:
         fp.close()
         fplog.close()

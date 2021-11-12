@@ -1,0 +1,7 @@
+Imported CDS data to Power BI(https://app.powerbi.com/).
+The address for the connection is the Enviroment URL(https://orgf26047c8.crm.dynamics.com/)
+Cleaned and reorgnized data.
+Generated link to check actual business flow for the device request approvel process.
+Created several calculated columns to further analyze the data
+Generated a few visuals to display and analyze.
+The report is available at: https://app.powerbi.com/groups/6d2b7992-da00-49b0-ab4c-4eedb4578d91/reports/c7686d85-e7a5-486e-8f54-04358f6b9a66?ctid=674d3e6c-45f7-42e9-938c-fcd01e3ff57c&pbi_source=linkShare

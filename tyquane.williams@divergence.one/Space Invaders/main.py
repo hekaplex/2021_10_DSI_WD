@@ -62,7 +62,7 @@ font = pygame.font.Font('freesansbold.ttf', 32)
 textX = 10
 testY = 10
 
-# Game Over text
+# Game Over Text
 
 over_font = pygame.font.Font('freesansbold.ttf', 64)
 
@@ -107,7 +107,7 @@ while running:
         if event.type == pygame.QUIT:
             running = False
     
-        # if keystroke is pressed check whether its right or left
+        # If a keystroke is pressed check whether its right or left
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_LEFT:
                 playerX_change = -0.5
@@ -129,7 +129,7 @@ while running:
     # 5 = 5 + 0.1
     
 
-    # Cheching for boundaries of spaceship so it doesn't go out of bounds
+    # Checking for boundaries of spaceship so it doesn't go out of bounds
     playerX += playerX_change
     
     if playerX <= 0:

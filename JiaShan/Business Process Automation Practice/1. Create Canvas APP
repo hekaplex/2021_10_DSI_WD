@@ -1,0 +1,7 @@
+Created a Canvas APP using Power Apps Canvas Studio via Make Power Apps(https://make.powerapps.com/)
+The APP is named "JiaShan_DeivceOrderApp". 
+It has 3 screens and allows customers to select and compare different products and submit the request.
+And will give customers a notification page summarizing the information at the end.
+The code for this APP is shared in this folder, named"5. JiaShan_DeviceOrderApp_Code".
+Obtained the code by exporting the APP as a package from Power Apps.
+To view and test the APP requires Microsoft premium access and CDS environment access.

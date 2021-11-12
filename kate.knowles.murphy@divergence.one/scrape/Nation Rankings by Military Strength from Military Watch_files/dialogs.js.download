@@ -1,0 +1,347 @@
+function uploadProgressDialog() {
+    $('body').loadingModal({
+        text: 'Please wait'
+    });
+
+    var animationAwesome = $('<i>', {
+        'class': 'fa fa-cog fa-2x fa-fw animationAwesome'
+    })
+    var errorAwesome = $('<i>', {
+        'class': 'fa fa-times fa-2x fa-fw errorAwesome'
+    })
+    var textWrapper = $('<div>', {
+        'class': 'progressTitle',
+        text: 'Please Wait...'
+    });
+    var progressText = $('<div>', {
+        'class': 'progressMessage',
+        text: 'Starting'
+    });
+    var fileSizeWrapper = $('<div>', {
+        'class': 'fileSizeWrapper',
+        'style': ' color: #01015d;font-size:.75rem;font-weight: 900;',
+        text: 'Size : '
+    });
+    var fileSize = $('<span>', {
+        'style': 'color: dimgray;font-weight:900;',
+        'class': 'fileSize'
+    });
+    fileSizeWrapper.append(fileSize);
+
+
+    var progressSlides = $('<div>', {
+        'class': 'progressSlides'
+
+    });
+    var progressTitlCurrent = $('<div>', {
+        'class': 'progressSlideTitle',
+        text: 'CURRENT FILE'
+    })
+    progressSlides.append(progressTitlCurrent);
+
+    var progressWrapperCurrent = $('<div>', {
+        'class': 'progressWrapper'
+    })
+    var progressCurrent = $('<div>', {
+        'class': 'uploadProgressCurrent'
+    })
+    var progressPercentCurrentWrapper = $('<div>', {
+        'class': 'progressPercentWrapper text-left',
+        'style': 'margin-top: -4px;'
+    })
+    var progressPercentCurrent = $('<span>', {
+        'class': 'badge progressPercent',
+        'id': 'progressPercentCurrent'
+    })
+
+    progressPercentCurrentWrapper.append(progressPercentCurrent);
+
+    progressWrapperCurrent.append(progressCurrent);
+
+    progressSlides.append(progressWrapperCurrent);
+    progressSlides.append(progressPercentCurrentWrapper);
+
+    var overAll = $('<div>', {
+        'class': 'overAll'
+    })
+    var progressTitleOverall = $('<div>', {
+        'class': 'progressSlideTitle',
+        text: 'OVERALL'
+    })
+
+    var progressWrapper = $('<div>', {
+        'class': 'progressWrapper'
+    })
+    var progress = $('<div>', {
+        'class': 'uploadProgress'
+    })
+    var progressPercentWrapper = $('<div>', {
+        'class': 'progressPercentWrapper text-left',
+        'style': 'margin-top: -4px;'
+    })
+    var progressPercent = $('<span>', {
+        'class': 'badge progressPercent',
+        'id': 'progressPercentOverall'
+    })
+
+
+    progressPercentWrapper.append(progressPercent);
+    progressWrapper.append(progressText);
+    progressWrapper.append(progress);
+
+    overAll.append(progressTitleOverall);
+    overAll.append(progressWrapper);
+    overAll.append(progressPercentWrapper);
+
+    progressSlides.append(overAll);
+
+    var pasueButton = $('<button>', {
+        'class': 'btn btn-flat btn-blue-grey uploaderButton',
+        text: 'PAUSE'
+    })
+    var retryButton = $('<button>', {
+        'class': 'btn btn-flat btn-danger retryButton',
+        text: 'RETRY'
+    })
+    var cancelButton = $('<button>', {
+        'class': 'btn btn-flat cancelButton',
+        text: 'BACK'
+    })
+
+
+
+    $('.jquery-loading-modal__info-box .jquery-loading-modal__animation').remove();
+    $('.jquery-loading-modal__text').html(animationAwesome);
+    $('.jquery-loading-modal__text').append(errorAwesome);
+    $('.jquery-loading-modal__text').append(textWrapper);
+    $('.jquery-loading-modal__text').append(progressText);
+    $('.jquery-loading-modal__text').append(fileSizeWrapper);
+
+    $('.jquery-loading-modal__text').append(progressSlides);
+    $('.jquery-loading-modal__text').append(pasueButton);
+    $('.jquery-loading-modal__text').append(retryButton);
+    $('.jquery-loading-modal__text').append(cancelButton);
+    $('.errorAwesome').hide();
+    $('.uploaderButton').hide();
+
+
+
+    $('.progressSlides').hide();
+
+    $('.fileSizeWrapper').hide();
+
+
+    $('.uploaderButton').click(function () {
+        if (r.isUploading()) {
+            $('.uploaderButton').text('RESUME');
+            r.pause();
+        } else {
+            $('.uploaderButton').text('PAUSE');
+            r.upload();
+        }
+    });
+
+    $('.cancelButton').click(function () {
+        $('body').loadingModal('destroy');
+        $('#photos_layout .photo').each(function (element) {
+            console.log(this);
+            console.log("ID : " + this.id);
+            var index = r.files.findIndex(x => x.uniqueIdentifier === this.id);
+            var alreadyAdded = $('<div>', {
+                'class': 'alreadyAdded'
+            });
+            var addedWrapper = $('<div>', {
+                'class': 'addWrapper z-depth-5',
+                html: '<span>' + Math.floor(r.files[index]._prevProgress *
+                    100) + '%</span>UPLOADED<span>Size : ' + ((
+                    r.files[index].size / 1024) / 1024).toFixed(
+                    2) + ' MB' + '</span>'
+            });
+            alreadyAdded.append(addedWrapper);
+            $(this).append(alreadyAdded);
+
+            if (r.files[index]._prevProgress == 1) {
+                $(this).find('.addWrapper').addClass('complete');
+            } else {
+                $(this).find('.addWrapper').addClass('inComplete');
+            }
+        });
+        console.log(r.files);
+    });
+
+    $('.retryButton').click(function () {
+        $('.progressTitle').text('Please Wait...');
+        $('.progressMessage').text('Retrying');
+        $('.uploaderButton').text('PAUSE');
+
+        $('.errorAwesome').hide();
+        $('.retryButton').hide();
+
+        $('.uploaderButton').show();
+        $('.progressTitle').show();
+        $('.progressPercent').show();
+        $('.progressMessage').show();
+        $('.animationAwesome').show();
+
+        console.log(r.files);
+        for (var i = 0; i < r.files.length; i++) {
+            if (r.files[i]._prevProgress < 1) {
+                r.files[i].retry();
+            };
+        }
+    });
+}
+
+
+
+function saveArticleProgress() {
+    $('body').loadingModal({
+        text: 'Please wait'
+    });
+    var animationAwesome = $('<i>', {
+        'class': 'fa fa-cog fa-2x fa-fw animationAwesome'
+    })
+    var errorAwesome = $('<i>', {
+        'class': 'fa fa-times fa-2x fa-fw errorAwesome'
+    })
+    var textWrapper = $('<div>', {
+        'class': 'progressTitle',
+        text: 'Please Wait...'
+    });
+    var progressText = $('<div>', {
+        'class': 'progressMessage',
+        text: 'Saving Article'
+    });
+    var retryButton = $('<button>', {
+        'class': 'btn btn-flat btn-danger retryButton',
+        text: 'RETRY'
+    })
+    var cancelButton = $('<button>', {
+        'class': 'btn btn-flat cancelButton',
+        text: 'CANCEL'
+    })
+
+    $('.jquery-loading-modal__info-box .jquery-loading-modal__animation').remove();
+    $('.jquery-loading-modal__text').html(animationAwesome);
+    $('.jquery-loading-modal__text').append(errorAwesome);
+    $('.jquery-loading-modal__text').append(textWrapper);
+    $('.jquery-loading-modal__text').append(progressText);
+    $('.jquery-loading-modal__text').append(retryButton);
+    $('.jquery-loading-modal__text').append(cancelButton);
+
+    $('.errorAwesome').hide();
+    $('.uploaderButton').hide();
+    $('.progressWrapper').hide();
+    $('.progressPercentWrapper').hide();
+    $('.fileSizeWrapper').hide();
+
+    $('.cancelButton').hide();
+    $('.retryButton').hide();
+
+    $('.retryButton').click(function () {
+        addArticle();
+    });
+    $('.cancelButton').click(function () {
+        $('body').loadingModal('destroy');
+    });
+}
+
+function dialogProgress(progressMessage) {
+    $('body').loadingModal({
+        text: 'Please wait'
+    });
+    var animationAwesome = $('<i>', {
+        'class': 'fa fa-cog fa-2x fa-fw animationAwesome'
+    })
+
+    var textWrapper = $('<div>', {
+        'class': 'progressTitle',
+        text: 'Please Wait...'
+    });
+    var progressText = $('<div>', {
+        'class': 'progressMessage',
+        text: progressMessage
+    });
+
+    $('.jquery-loading-modal__info-box .jquery-loading-modal__animation').remove();
+    $('.jquery-loading-modal__text').html(animationAwesome);
+
+    $('.jquery-loading-modal__text').append(textWrapper);
+    $('.jquery-loading-modal__text').append(progressText);
+
+}
+
+
+
+function showSuccessfullEditDialog() {
+    $('body').loadingModal({
+        text: 'Please wait'
+    });
+    var animationAwesome = $('<i>', {
+        'class': 'fa fa-check fa-2x fa-fw successAwesome'
+    })
+    var textWrapper = $('<div>', {
+        'class': 'progressTitle',
+        text: "All Good , What's Next ?"
+    });
+    var progressText = $('<div>', {
+        'class': 'progressMessage',
+        html: 'Article<span>Updated</span>Successfully'
+    });
+    var newButton = $('<button>', {
+        'class': 'btn btn-flat addNewButton',
+        text: 'More Edits'
+    })
+    var reviewButton = $('<button>', {
+        'class': 'btn btn-flat reviewButton',
+        text: 'HOME'
+    })
+
+    $('.jquery-loading-modal__info-box .jquery-loading-modal__animation').remove();
+
+    $('.jquery-loading-modal__text').html(animationAwesome);
+    $('.jquery-loading-modal__text').append(textWrapper);
+    $('.jquery-loading-modal__text').append(progressText);
+    $('.jquery-loading-modal__text').append(newButton);
+    $('.jquery-loading-modal__text').append(reviewButton);
+
+
+
+
+
+
+
+    $('.errorAwesome').hide();
+    $('.uploaderButton').hide();
+    $('.progressWrapper').hide();
+    $('.progressPercentWrapper').hide();
+    $('.fileSizeWrapper').hide();
+
+    $('.addNewButton').click(function () {
+        location.reload();
+    });
+
+    $('.reviewButton').click(function () {
+        location.reload();
+        window.open('index.php', "_self");
+    });
+
+}
+
+
+function showPhotoErrorDialog(errorsCount) {
+
+    $('.retryButton').show();
+    $('.cancelButton').show();
+    $('.uploaderButton').hide();
+    $('.progressPercent').hide();
+    $('.fileSizeWrapper').hide();
+    $('.animationAwesome').hide();
+    $('.progressTitle').text('Something Wrong !');
+    $('.progressMessage').html('<span>' + errorsCount + '</span>Photo Failed To Upload');
+    if (errorsCount > 1) {
+        $('.progressMessage').html('<span>' + errorsCount +
+            '</span>Photos Failed To Upload');
+    }
+    $('.errorAwesome').show();
+}

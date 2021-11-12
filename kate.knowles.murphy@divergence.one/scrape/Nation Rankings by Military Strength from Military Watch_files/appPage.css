@@ -1,0 +1,1746 @@
+/*@media  (hover:none) {
+    body.topBarSingle #currentSelect {
+      transform: scale(1, 1) !important;
+      overflow: unset !important;
+          max-height: unset !important;
+  }
+  
+  body.topBarMulti #currentSelectMulti {
+       transform: scale(1, 1) !important;
+      overflow: unset !important;
+      max-height: unset !important;
+  }
+  
+  .forceAppBannerImage{
+      width:100%;
+      margin-top: 3.4rem;
+  }
+  .forcePageTitle {
+      z-index: 9999;
+      margin: auto;
+      background: white;
+      color: black;
+      padding: .75rem;
+      box-shadow: 1px 6px 8px -4px #2e2e2e61;
+      border-top: 4px solid black;
+      border-bottom: 4px solid black;
+      font-size: 1rem;
+      font-weight: 700;
+  }
+  .appButtonHolder{
+      display:flex;
+      flex-wrap: wrap;
+      margin-bottom: 3rem;
+      margin-left: -4%;
+      margin-right: -4%;
+  }
+  .appTitleBanner {
+      opacity: 1;
+      font-family: 'Open Sans', 'Helvetica Neue', sans-serif;
+      padding: 0;
+      height: 200px;
+      text-transform: uppercase;
+      text-align: center;
+      display: flex;
+      transition: all 300ms cubic-bezier(0.4, 0, 1, 1);
+      width: 100%;
+  }
+  
+  .appTitleBanner img {
+      width: 99%;
+      height: 200px;
+      flex: 1;
+      position: absolute;
+      object-fit: cover;
+      filter: blur(4px);
+      display: flex;
+  }
+  
+  .appTitleBanner .backButton {
+  
+      background: #f8f9fa;
+      padding: 0.5rem;
+  
+      z-index: 9999;
+  
+  }
+  
+
+  .appLargeButton {
+      padding: .5rem;
+    
+  }
+  
+  .appLargeButton a img {
+      transition: all 0.4s cubic-bezier(.25, .8, .25, 1);
+      height: 125px;
+      width: 100%;
+      object-fit: cover;
+      box-shadow: 0px 7px 19px 0px #868e96;
+  }
+  
+  .appLargeButton a:hover img {
+      filter: grayscale(.75);
+      box-shadow: 0px 0px 6px 0px #868e96;
+  }
+  
+  .appLargeButton a span {
+      background: #111111a6;
+      color: white;
+      font-weight: 900;
+      position: absolute;
+      display: inline-block;
+      margin-right: 0.5rem;
+      overflow: hidden;
+      transform: translateY(-100%);
+      font-size: 1.5rem;
+      padding: .25rem;
+  
+  }
+  .appLargeButton span {
+      background: #111111a6;
+      color: white;
+      font-weight: 900;
+      width: 100%;
+      display: block;
+      position: absolute;
+      display: block;
+      overflow: hidden;
+      font-size: .75rem;
+      padding: .25rem;
+      width: 92%;
+      z-index: 9999;
+  }
+  
+
+  .appOptionSelection {
+      display: flex;
+      margin: auto;
+      margin-bottom: 1rem;
+      margin-top: 2rem;
+  }
+  
+  .appOptionSelection .appOption {
+      text-align: center;
+      width: 50%;
+      cursor: pointer;
+      display: block;
+      padding: .5rem .5rem;
+      background-color: #fff;
+      border: 1px solid rgba(0, 0, 0, .125);
+      color: black;
+      transition: all 200ms cubic-bezier(0.4, 0, 1, 1);
+      display: flex;
+      align-items: center;
+  }
+  
+  .appOptionSelection .appOption:first-child {
+      border-right: unset !important;
+      transition: all 200ms cubic-bezier(0.4, 0, 1, 1);
+  }
+  
+  .appOptionSelection .appOption.active {
+      background-color: gray;
+      color: white;
+      font-weight: 900;
+  }
+  
+
+  .countryListItem {
+      display: flex !important;
+      width: 100% !important;
+      cursor: pointer !important;
+      border: 1px solid rgba(0, 0, 0, .125);
+      align-items: center;
+      padding: 0;
+      padding-bottom: .25rem;
+      padding-top: .25rem;
+      direction: ltr;
+  }
+  
+  .countryListItem img {
+      height: 25px;
+      width: 40px;
+      margin-left: auto;
+      margin-right: 0.5rem;
+  }
+  
+  .countryListItem .countryName {
+      font-size: .8rem !important;
+      font-weight: 500 !important;
+      margin-right: auto !important;
+      padding: .25rem;
+      color: black;
+      transition: all 200ms cubic-bezier(0.4, 0, 1, 1);
+  }
+  
+  #currentSelect {
+      position: fixed !important;
+      bottom: 0;
+      height: 3.5rem !important;
+      min-width: 100%;
+      z-index: 999;
+      transform: scale(1,0);
+      transform-origin: bottom;
+      transition: all 200ms cubic-bezier(0.4, 0, 1, 1);
+      display: flex;
+  }
+  
+  #currentSelectMulti {
+     position: fixed !important;
+     bottom: 0;
+     height: 3.5rem ;
+     min-width: 100%;
+     z-index: 999;
+     transform: scale(1,0);
+     transform-origin: bottom;
+     transition: all 200ms cubic-bezier(0.4, 0, 1, 1);
+     display: flex;
+  }
+  
+  #singleCountrySelection,
+  #multiCountrySelection {
+      margin: auto !important;
+      overflow: hidden !important;
+      max-height: 0 !important;
+      transition: all 200ms cubic-bezier(0.4, 0, 1, 1) !important;
+      display: flex !important;
+  }
+  
+  #singleCountrySelection.active,
+  #multiCountrySelection.active {
+      margin-top: 3rem !important;
+      margin-bottom: 3rem !important;
+      max-height: 520px !important;
+      padding: .25rem !important;
+  }
+  
+  .countryList {
+
+      max-height: 3.0rem !important;
+      overflow-y: hidden !important;
+      transition: all 200ms linear !important;
+      scroll-snap-type: x mandatory;
+
+      scroll-snap-type: mandatory;
+
+      -ms-scroll-snap-type: mandatory;
+
+      -webkit-scroll-snap-type: mandatory;
+
+      -webkit-scroll-snap-destination: 0% 0%;
+      -webkit-overflow-scrolling: touch;
+  }
+  
+  
+  
+  #singleCountrySelection .countryList>div {
+      flex: 0 0 100%!important;
+      max-width: 100%!important;
+  }
+  
+  #singleCountrySelection.dropped .countryList {
+      max-height: 14rem !important;
+      overflow-y: scroll !important;
+      border: 1px solid #e9ecef!important;
+      border-top: unset!important;
+  }
+  
+  #singleCountrySelection .fas {
+  
+      height: 2.5rem !important;
+      min-width: 2.5rem !important;
+      display: flex !important;
+      text-align: center !important;
+      transition: all 200ms cubic-bezier(0.4, 0, 1, 1);
+      align-items: center !important;
+      justify-content: center !important;
+  }
+  
+  #singleCountrySelection.dropped .fas {
+      transform: rotate(-180deg);
+      -webkit-transform: rotate(-180deg);
+
+      -moz-transform: rotate(-180deg);
+      -o-transform: rotate(-180deg);
+      -ms-transform: rotate(-180deg);
+  }
+  
+  #multiCountrySelection #firstCountryList.dropped,
+  #multiCountrySelection #secondCountryList.dropped {
+      max-height: 10rem !important;
+      overflow-y: scroll !important;
+  }
+  
+  #multiCountrySelection .listHolder {
+      display: flex!important;
+  }
+  
+  #multiCountrySelection .fas {
+      height: 2.5rem!important;
+      min-width: 2.5rem!important;
+      display: flex!important;
+      text-align: center!important;
+      transition: all 200ms cubic-bezier(0.4, 0, 1, 1)!important;
+      align-items: center!important;
+      justify-content: center!important;
+  }
+  
+  #multiCountrySelection .listHolder.dropped {
+      margin-bottom: 1rem!important;
+      margin-top: 1rem!important;
+  }
+  
+  #multiCountrySelection .listHolder.dropped .countryList {
+      max-height: 10rem !important;
+      overflow-y: scroll !important;
+      border: 1px solid #e9ecef;
+      border-top: unset;
+  }
+  
+  #multiCountrySelection .listHolder.dropped .fas {
+      transform: rotate(-180deg);
+      -webkit-transform: rotate(-180deg);
+      -moz-transform: rotate(-180deg);
+      -o-transform: rotate(-180deg);
+      -ms-transform: rotate(-180deg);
+  }
+  
+  
+  .searchInput {
+      display: none;
+  }
+  
+  .countrySelectionOptions {
+      padding: 0!important;
+
+      display: none !important;
+  }
+  
+  .countrySelectionOptions .title {
+      font-size: 1rem !important;
+      text-align: center !important;
+  }
+  
+  #singleCountryLoaded,
+  #multiCountryLoaded {
+      display: none;
+      padding: 0!important;
+      margin-bottom: 3rem;
+  }
+  
+  
+  
+  
+  }
+  */
+  
+  body.topBarSingle #currentSelect {
+      max-height: 3rem;
+      overflow: unset;
+  }
+  
+  body.topBarMulti #currentSelectMulti {
+      max-height: 3rem;
+      overflow: unset;
+  }
+  .forceAppBannerImage{
+   display: none;
+  }
+  #pcAdsFirst{display:none;margin:auto;padding: .5rem!important;border: 1px solid #e0e0e0;}
+  #pcAdsFirst>ins{
+      margin:auto;
+      display:block;
+      margin-bottom: .5rem;
+      width: 96%;
+  }
+  #pcAdsSecond{
+      display:none;
+      min-height: 100%;
+      margin: auto;
+  }
+  #pcAdsSecond>ins{
+      margin:auto;
+      display:block;
+      margin-bottom: .5rem;
+      width: 96%;
+  }
+  #pcAdsSecond>ins:first-child{
+     margin-bottom:auto;
+  }
+  #currentSelect .goButton {
+      color: #0080ff;
+      height: 2.25rem;
+      width: 2.25rem;
+      min-width: unset;
+      display: flex;
+      text-align: center;
+      transition: all 300ms linear;
+      align-items: center;
+      align-self: center;
+      justify-content: center;
+      margin-bottom: 0.5rem;
+      background: white;
+      box-shadow: unset !important;
+      border: unset;
+      margin-top: .5rem;
+      margin-right: .5rem;
+      font-size: 1.5rem;
+      padding: .25rem;
+  }
+  
+  #currentSelect .fButton {
+      color: white!important;
+      background: #3b5998;
+  }
+  
+  #currentSelect .tButton {
+      color: white!important;
+      background: #1dcaff;
+  }
+  #currentSelect .upButtonSingle {
+    display:none!important;
+  }
+  
+  .forcePageTitle {
+      z-index: 9999;
+      margin: auto;
+      background: white;
+      color: black;
+      padding: 1.5rem;
+      box-shadow: 1px 6px 8px -4px #2e2e2e61;
+      border-top: 4px solid black;
+      border-bottom: 4px solid black;
+      font-weight: 100;
+  }
+  
+  .appTitleBanner {
+      opacity: 1;
+      font-family: 'Open Sans', 'Helvetica Neue', sans-serif;
+      padding: 0;
+      height: 300px;
+      text-transform: uppercase;
+      text-align: center;
+      display: flex;
+      transition: all 300ms cubic-bezier(0.4, 0, 1, 1);
+      width: 100%;
+  }
+  
+  .appLargeButton a {
+      display: flex;
+      flex-direction: column;
+  }
+  
+  .appTitleBanner img {
+      width: 100%;
+      height: 300px;
+      flex: 1;
+      position: absolute;
+      object-fit: cover;
+      filter: blur(4px);
+      display: flex;
+  }
+  
+  .appTitleBanner .backButton {
+      /* position: absolute; */
+      background: #f8f9fa;
+      padding: .5rem;
+      margin-right: .5rem;
+      /* border-radius: 50%; */
+      /* width: 3rem; */
+      /* height: 3rem; */
+      font-size: 1.rem;
+      /* margin-left: 1rem; */
+      z-index: 9999;
+      /* left: 0; */
+  }
+  .appButtonHolder{
+      display:flex;
+      flex-wrap: wrap;
+      margin-bottom: 1rem;
+  }
+  .appLargeButton {
+      padding: .5rem;
+      padding-bottom: 0;
+  }
+  
+  .appLargeButton a img {
+      transition: all 0.4s cubic-bezier(.25, .8, .25, 1);
+      height: 175px;
+      width: 100%;
+      object-fit: cover;
+      box-shadow: 0px 7px 19px 0px #868e96;
+      
+  }
+  
+  .appLargeButton a:hover img {
+      filter: grayscale(.75);
+      box-shadow: 0px 0px 6px 0px #868e96;
+  }
+  
+  .appLargeButton span {
+      background: #111111a6;
+      color: white;
+      font-weight: 900;
+      width: 94%;
+      display: block;
+      position: absolute;
+      /* display: inline-block; */
+      overflow: hidden;
+      font-size: 1rem;
+      padding: .25rem;
+      bottom: 0rem;
+      z-index: 999999;
+  }
+  
+  /*_____________________________________*/
+  .appOptionSelection {
+      display: flex;
+      margin: auto;
+      padding-top: 2rem;
+      padding-bottom: 2rem;
+      background: white;
+  }
+  
+  .appOptionSelection .appOption {
+      text-align: center;
+      width: 50%;
+      cursor: pointer;
+      display: block;
+      padding: .75rem 1.25rem;
+      background-color: #fff;
+      border: 1px solid rgba(0, 0, 0, .125);
+      color: black;
+      transition: all 200ms cubic-bezier(0.4, 0, 1, 1);
+  }
+  
+  .appOptionSelection .appOption:first-child {
+      border-right: unset !important;
+      transition: all 200ms cubic-bezier(0.4, 0, 1, 1);
+  }
+  
+  .appOptionSelection .appOption.active {
+      background-color: gray;
+      color: white;
+      font-weight: 900;
+  }
+  
+  /*_____________________________________*/
+  #currentSelect {
+      max-height: 0;
+      position: sticky;
+      top: 0px;
+      height: 4rem;
+      z-index: 999;
+      /* box-shadow: black 1px 1px 1px; */
+      overflow: hidden;
+      transition: all 300ms linear;
+      display: flex;
+      flex-direction: row;
+  }
+  
+  #currentSelectMulti {
+      max-height: 0;
+      position: sticky;
+      top: 0px;
+      z-index: 999;
+      /* box-shadow: black 1px 1px 1px; */
+      overflow: hidden;
+      transition: all 200ms linear;
+      display: flex;
+      flex-direction: row;
+  }
+  
+  #currentSelectMulti .countryA,
+  #currentSelectMulti .countryB,
+  #currentSelectMulti .forceSelect {/* background: #e9ecef; */}
+  
+  #currentSelectMulti .country,
+  #currentSelectMulti .forceType {
+      width: 100%;
+      display: flex;
+  }
+  
+  #currentSelectMulti .country .countryASelect,
+  #currentSelectMulti .country .countryBSelect,
+  #currentSelectMulti .forceTypeASelect {
+      flex: 1;
+  }
+  
+  
+  #currentSelect .holder {
+      border-bottom: 1px solid gray;
+      border-bottom-left-radius: .5rem;
+      border-bottom-right-radius: 0.5rem;
+      box-shadow: 0px 0px 16px 2px #616161;
+      display: flex;
+      background: #e9ecef;
+      margin-left: auto;
+      margin-right: auto;
+      padding-left: .5rem;
+      display: flex;
+  }
+  
+  #currentSelectMulti .holder {
+      border-bottom: 1px solid gray;
+      border-bottom-left-radius: .5rem;
+      border-bottom-right-radius: 0.5rem;
+      box-shadow: 0px 0px 16px 2px #616161;
+      display: flex;
+      background: #e9ecef;
+      margin-left: auto;
+      margin-right: auto;
+      padding-left: .5rem;
+      display: flex;
+  }
+  
+  #currentSelectMulti .goButton {
+      color: #0080ff;
+      height: 2.25rem;
+      width: 2.25rem;
+      min-width: unset;
+      display: flex;
+      text-align: center;
+      transition: all 300ms linear;
+      align-items: center;
+      align-self: center;
+      justify-content: center;
+      margin-bottom: 0.5rem;
+      background: white;
+      box-shadow: unset !important;
+      border: unset;
+      margin-top: .5rem;
+      margin-right: .5rem;
+      font-size: 1.5rem;
+      padding: .25rem;
+  }
+  
+  #currentSelectMulti .goButton:hover {
+      background: gray;
+      color: white;
+  }
+  
+  #currentSelectMulti .goButton:active {
+      transform: scale(.99);
+  
+      color: white;
+  }
+  #currentSelectMulti .gButton {
+      color: white!important;
+      background: #585858;
+      margin-right:1.5rem;
+  }
+  #currentSelectMulti .fButton {
+      color: white!important;
+      background: #3b5998;
+  }
+  
+  #currentSelectMulti .tButton {
+      color: white!important;
+      background: #1dcaff;
+  }
+  #currentSelectMulti .upButtonSingle {
+    display:none!important;
+  }
+  
+  #currentSelect .title {
+      margin-left: .5rem;
+      margin-top: auto;
+      margin-bottom: auto;
+      color: red;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .15rem;
+      font-size: 1.5rem;
+      border-right: 1px solid #e9ecef;
+      padding-right: .5rem;
+  }
+  
+  #currentSelect .forceType {
+      display: flex;
+      /* margin-top: .5rem; */
+      color: #2e2e2e;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .15rem;
+      margin-right: .5rem;
+  }
+  
+  #currentSelect .content {
+      margin-left: .5rem;
+      margin-top: auto;
+      margin-bottom: auto;
+      color: #2e2e2e;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .15rem;
+      font-size: 1rem;
+      border-right: 1px solid #e9ecef;
+      padding-right: .5rem;
+  }
+  
+  
+  
+  
+  
+  #currentSelect #countryQuickList {
+      text-align: center;
+      max-height: 3rem;
+      overflow: hidden;
+      transition: all 200ms linear;
+      scroll-snap-type: x mandatory; /* Chrome Canary */
+      display: flex;
+      flex-direction: column;
+      /* flex-grow: 1; */
+      scroll-snap-type: mandatory; /* Firefox */
+      -ms-scroll-snap-type: mandatory; /* IE/Edge */
+      -webkit-scroll-snap-type: mandatory; /* Safari */
+      -webkit-scroll-snap-destination: 0% 0%;
+      -webkit-overflow-scrolling: touch;
+  }
+  
+  #currentSelectMulti #countryQuickList {
+      text-align: center;
+      max-height: 3rem;
+      overflow: hidden;
+      transition: all 200ms linear;
+      display: flex;
+      flex-direction: column;
+  }
+  
+  
+  #currentSelect #forceTypeQuickList {
+      text-align: center;
+      max-height: 3rem;
+      overflow: hidden;
+      transition: all 200ms linear;
+      display: flex;
+      flex-direction: column;
+  }
+  
+  #currentSelectMulti #forceTypeQuickList {
+      text-align: center;
+      padding-right: .5rem;
+      max-height: 3rem;
+      overflow: hidden;
+      transition: all 200ms linear;
+      display: flex;
+      flex-direction: column;
+  }
+  
+  
+  #currentSelect .country.active {
+      border-top: unset;
+      padding-bottom: .5rem;
+  }
+  
+  #currentSelectMulti .country.active {
+      border-top: unset;
+      padding-bottom: .5rem;
+  }
+  
+  
+  
+  #currentSelect .forceType.active {
+      border-top: unset;
+      padding-bottom: .5rem;
+  }
+  
+  #currentSelectMulti .forceType.active {
+      border-top: unset;
+      padding-bottom: .5rem;
+  }
+  
+  
+  
+  #currentSelect .country.active #countryQuickList {
+      max-height: 20rem;
+      overflow-y: scroll;
+      border: 1px solid #e9ecef;
+      direction: rtl;
+      background: white;
+  }
+  
+  #currentSelectMulti .country.active #countryQuickList {
+      max-height: 20rem;
+      overflow-y: scroll;
+      border: 1px solid #e9ecef;
+      direction: rtl;
+       background: white;
+      /* box-shadow: 4px 50px 26px -43px #bbbbbb; */
+  }
+  
+  
+  #currentSelect .forceType.active #forceTypeQuickList {
+      max-height: 20rem;
+      border: 1px solid #e9ecef;
+      direction: rtl;
+      background: white;
+  }
+  
+  #currentSelectMulti .forceType.active #forceTypeQuickList {
+      max-height: 20rem;
+      border: 1px solid #e9ecef;
+      direction: rtl;
+        background: white;
+      /* box-shadow: 4px 50px 26px -43px #bbbbbb; */
+  }
+  
+  
+  #countryQuickList::-webkit-scrollbar-track {
+      -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+      background-color: #F5F5F5;
+  }
+  
+  #countryQuickList::-webkit-scrollbar {
+      width: 6px;
+      background-color: #F5F5F5;
+  }
+  
+  #countryQuickList::-webkit-scrollbar-thumb {
+      background-color: #000000;
+  }
+  
+  
+  
+  
+  #currentSelect .fas {
+    color: white;
+    height: 3rem;
+    width: 3rem;
+    margin-top: -.5rem;
+    display: flex;
+    text-align: center;
+    transition: all 300ms linear;
+    align-items: center;
+    align-self: center;
+    justify-content: center;
+    display: none;
+  }
+  
+  
+  
+  #currentSelect .forceType.active .fas {
+      transform: rotate(-180deg);
+      -webkit-transform: rotate(-180deg);
+      -moz-transform: rotate(-180deg);
+      -o-transform: rotate(-180deg);
+      -ms-transform: rotate(-180deg);
+  }
+  
+  #currentSelect .country.active .fas {
+      transform: rotate(-180deg);
+      -webkit-transform: rotate(-180deg);
+      -moz-transform: rotate(-180deg);
+      -o-transform: rotate(-180deg);
+      -ms-transform: rotate(-180deg);
+  }
+  
+  #currentSelect .country {
+      display: flex;
+      /* margin-top: 0.5rem; */
+  }
+  
+  
+  
+  
+  
+  
+  
+  
+  .countrySelectionOptions {
+      display: flex;
+  }
+  
+  .countrySelectionOptions .title {
+      font-size: 1.5rem;
+      text-align: left;
+      font-weight: 900;
+      margin-top: .5rem;
+      margin-bottom: .5rem;
+      text-decoration: underline;
+      text-transform: uppercase;
+  }
+  
+  #singleCountrySelection .fas {
+      margin-bottom: auto;
+      margin-top: auto;
+      display: none;
+  }
+  
+  #singleCountrySelection,
+  #multiCountrySelection {
+      /* margin-bottom: 4rem!important; */
+      margin: auto;
+      overflow: hidden;
+      max-height: 0;
+      transition: all 200ms cubic-bezier(0.4, 0, 1, 1);
+      /* margin-top:  4rem; */
+  }
+  
+  #singleCountrySelection.active,
+  #multiCountrySelection.active {
+      margin-bottom: 1rem !important;
+      margin-top: 1rem;
+      max-height: 520px;
+      padding: .25rem;
+      border: 1px solid rgba(0, 0, 0, .125);
+  }
+  
+  #multiCountrySelection .listHolder {
+      display: flex;
+  }
+  
+  #multiCountrySelection .fas {
+      display: none;
+  }
+  
+  #firstCountryList .countryListItem:hover,
+  #singleCountrySelection .countryListItem:hover {
+      background-color: navy;
+      border-color: navy;
+  }
+  
+  #secondCountryList .countryListItem:hover .countryName,
+  #firstCountryList .countryListItem:hover .countryName,
+  #singleCountrySelection .countryListItem:hover .countryName {
+      color: white;
+      font-weight: 900;
+  }
+  
+  #firstCountryList .countryListItem.active,
+  #singleCountrySelection .countryListItem.active {
+      background-color: navy;
+      border-color: navy;
+  }
+  
+  #secondCountryList .countryListItem.active .countryName,
+  #firstCountryList .countryListItem.active .countryName,
+  #singleCountrySelection .countryListItem.active .countryName {
+      color: white;
+      font-weight: 900;
+  }
+  
+  #secondCountryList .countryListItem:hover {
+      background-color: #CC0000;
+      border-color: #CC0000;
+  }
+  
+  #secondCountryList .countryListItem.active {
+      background-color: #CC0000;
+      border-color: #CC0000;
+  }
+  
+  #firstCountryList .countryListItem.inactive,
+  #secondCountryList .countryListItem.inactive {
+      pointer-events: none;
+      cursor: pointer !important;
+      background: #bbbbbb;
+  
+  }
+  
+  #firstCountryList .countryListItem.inactive img,
+  #secondCountryList .countryListItem.inactive img {
+      filter: grayscale(.95);
+  
+  }
+  
+  .countryList {
+      max-height: 250px;
+      overflow: hidden;
+      overflow-y: scroll;
+      transition: all 200ms linear;
+      width: 100%;
+  }
+  
+  .countryList::-webkit-scrollbar-track {
+      -webkit-box-shadow: inset 0 0 2px rgba(0, 0, 0, 0.3);
+      background-color: #F5F5F5;
+  }
+  
+  .countryList::-webkit-scrollbar {
+      height: 10px;
+      width: 2px;
+      background-color: #F5F5F5;
+  }
+  
+  .countryList::-webkit-scrollbar-thumb {
+      background-color: #000000;
+      border: 2px solid #555555;
+  }
+  
+  .countryListItem {
+      display: flex;
+      width: 100%;
+      cursor: pointer;
+      background-color: white;
+      border: 1px solid rgba(0, 0, 0, .125);
+      align-items: center;
+      padding: 0;
+      padding-bottom: .25rem;
+      padding-top: .25rem;
+      transition: all 200ms cubic-bezier(0.4, 0, 1, 1);
+      direction: ltr;
+  }
+  
+  .countryListItem:hover {
+  
+      background-color: #e9ecef !important;
+      border-color: #e9ecef !important;
+      color: black !important
+  }
+  
+  .countryListItem:hover .countryName {
+  
+  
+      color: black !important
+  }
+  
+  .countryListItem img {
+      height: 25px;
+      width: 40px;
+      margin-left: auto;
+      margin-right: 0.5rem;
+  }
+  
+  .countryListItem .countryName {
+      font-size: .8rem;
+      font-weight: 500;
+      margin-right: auto;
+      padding: .25rem;
+      color: black;
+      transition: all 200ms cubic-bezier(0.4, 0, 1, 1);
+  }
+  
+  #singleCountryLoaded,
+  #multiCountryLoaded {
+      display: none;
+      padding-bottom: 2rem;
+      background: #f8f9fa;
+  }
+  .categoryContainer{
+      padding:0!important;
+  }
+  .countryForcesReport {
+      padding: 1rem;
+      border: 1px solid;
+      border-radius: 0rem;
+      border-color: #e9ecef;
+      margin-top: 0.75rem;
+      margin-bottom: 0.5rem;
+      background: #f8f9fa;
+  }
+  
+  .countryForcesReport .infoCard {
+      display: flex;
+      padding: 1rem;
+      flex-direction: column;
+      flex-wrap: nowrap;
+      flex-wrap: wrap;
+  }
+  
+  .categoryContainer {
+      border: #f8f8f8 solid 1px;
+      background: white;
+  }
+  
+  .categoryContainer.noCounts .modelQuantity {
+      color: white;
+      background: white;
+  }
+  
+  .categoryHeader {
+      text-transform: uppercase;
+      font-size: 1.5rem;
+      padding: .5rem;
+      text-align: center;
+      background: #585858;
+      color: #f8f8f8;
+      font-weight: 700;
+      border: #f8f8f8 solid 2px;
+      margin-bottom: 0.75rem;
+      margin-top: 0.75rem;
+  }
+  
+  .categorySubHeader {
+      /* width: 75%; */
+      text-transform: uppercase;
+      font-size: 1rem;
+      text-align: left;
+      background: #dee2e6;
+      color: #585858;
+      font-weight: 700;
+      /* border-bottom: #585858 solid 1px; */
+      /* border-top: #585858 solid 1px; */
+      display: block;
+      padding: .5rem;
+      text-align: center;
+      margin-top: 1rem;
+      box-shadow: 0 0 2px black;
+  }
+
+.categorySubHeader {}
+  
+  
+  #multiCountryLoaded .countryForcesReport .infoCard {
+      display: flex;
+      padding: 1rem;
+      flex-direction: column;
+      flex-wrap: nowrap;
+      /* flex-grow: inherit; */
+      flex-wrap: wrap;
+      flex-direction: row;
+  }
+  
+  #multiCountryLoaded .countryForcesReport .infoCard .flagb {
+      width: 25%;
+      object-fit: contain;
+      max-height: 200px;
+      margin: auto;
+  }
+  
+  #multiCountryLoaded .countryForcesReport .infoCard .flaga {
+      width: 25%;
+      object-fit: contain;
+      max-height: 200px;
+      margin: auto;
+  }
+  
+  .infoBanner {
+      background: #ffffff;
+  }
+  
+  #multiCountryLoaded .infoBanner {
+      background: #ffffff;
+      width: 50%;
+      margin: auto;
+  }
+  
+  .appBanner {
+      display: none;
+  }
+  
+  .countryForcesReport.screenShot {
+      background: #f2f3f5;
+      padding: 0rem;
+  }
+  
+  .countryForcesReport.screenShot .appBanner {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      align-content: center;
+      align-self: center;
+      border-top: 2px white solid;
+      border-bottom: 2px white solid;
+      margin-left: 2rem;
+      margin-right: 2rem;
+  }
+  
+  .countryForcesReport.screenShot .reportItem {
+      display: none;
+  }
+  
+  .countryForcesReport.screenShot .infoItems {
+      display: flex;
+      width: 100%;
+      background: white;
+  }
+  
+  .countryForcesReport .infoItems {
+      /* display:none; */
+  }
+  
+  .infoItems .title {
+      color: #000000;
+      font-weight: 900;
+      font-family: sans-serif;
+      font-family: 'Open Sans', 'Helvetica Neue', sans-serif;
+      letter-spacing: unset;
+  }
+  
+  .countryForcesReport.screenShot .infoCard .infoBanner {
+      display: flex;
+      flex-direction: row;
+      /* border-radius: 1rem; */
+      margin-left: auto;
+      background: #2e2e2e;
+      width: 100%;
+      /* flex-wrap:  nowrap; */
+  }
+  
+  .infoCard .linkBanner {
+      font-weight: 900;
+      text-transform: uppercase;
+      background: black;
+      color: white;
+      padding: .5rem;
+      font-size: 1.25rem;
+      letter-spacing: .10rem;
+  }
+  
+  .infoCard .appBanner {
+      font-weight: 900;
+      text-transform: uppercase;
+      /* background: #2e2e2e; */
+      color: white;
+      padding: .5rem;
+      font-size: 3rem;
+      flex: 1;
+      letter-spacing: .10rem;
+      text-align: center;
+      /* border-bottom: 1px solid black; */
+  }
+  
+  .infoCard .appBanner span {
+      /* font-size: 3rem; */
+      /* text-align:  left; */
+      /* display: block; */
+      /* text-align:  center; */
+      /* text-decoration: underline; */
+      /* margin:  auto; */
+  }
+  
+  .countryAndForce {
+      font-size: 1.5rem;
+  }
+  
+  .infoCard .infoTitle {
+      font-weight: 900;
+      text-transform: uppercase;
+      /* background: #212529; */
+      color: #212529;
+      /* padding: .25rem; */
+      font-size: 1.25rem;
+      letter-spacing: .10rem;
+      /* flex: 1; */
+      display: flex;
+      /* border-top: 5px solid; */
+  }
+  
+  #multiCountryLoaded .infoCard .infoTitle span span {
+      margin: auto;
+      display: block;
+  }
+  
+  .infoCard .infoTitle>span {
+      border-top: 2px solid;
+      border-bottom: 2px solid;
+      padding-top: 1rem;
+      padding-bottom: 1rem;
+  }
+  
+  .infoCard .forceType {
+      display: none;
+  }
+  
+  .countryForcesReport.screenShot .infoCard .forceType {
+      max-height: 350px;
+      display: unset;
+      width: 50%;
+      object-fit: cover;
+  }
+  
+  .countryForcesReport.screenShot .infoCard .infoTitle {
+      /* flex: 1; */
+      padding: 0;
+      font-size: 1.25rem;
+      font-weight: 900;
+  }
+  
+  .countryForcesReport.screenShot .infoCard .infoTitle span {
+      display: none;
+  }
+  
+  .infoTitle span {
+      margin: auto;
+      flex: 1;
+      text-align: center;
+  
+      margin-left: 5%;
+      margin-right: 5%;
+  
+  }
+  
+  .countryForcesReport.screenShot .infoCard .flag {
+      margin-left: 0;
+  }
+  
+  .countryForcesReport.screenShot .infoCard .flag {
+      margin-left: 0;
+  }
+  
+  .countryForcesReport.screenShot .infoCard {
+      flex-direction: row;
+      width: 1200px;
+      /* height: 628px; */
+      background: #f2f3f5;
+      padding: 0;
+      /* flex-wrap: wrap; */
+  }
+  
+  .countryForcesReport.screenShot .infoCard .reportOptions {
+      display: none;
+  }
+  
+  .countryForcesReport .infoCard .cardFooter {
+      display: none;
+  }
+  
+  .countryForcesReport.screenShot .infoCard .cardFooter {
+      background: #f2f3f5;
+  
+      display: flex;
+      margin: auto;
+  
+  }
+  
+  .countryForcesReport.screenShot .infoCard .cardFooter span {
+      text-transform: uppercase;
+      color: black;
+      font-weight: 900;
+      font-size: 2.4rem;
+      letter-spacing: .25rem;
+  }
+  
+  .countryForcesReport.screenShot .reportButtons {
+      display: none;
+  }
+  
+  .countryForcesReport .infoCard .flag {
+      max-height: 225px;
+  }
+  
+  .countryForcesReport.screenShot .infoCard .flag {
+      max-height: 350px;
+  }
+  
+  .countryForcesReport .infoCard .reportOptions {
+      display: flex;
+      flex-direction: column;
+  }
+  
+  .countryForcesReport .infoCard .reportOptions .reportTitle {
+      font-weight: 900;
+      margin-left: .5rem;
+      margin-left: auto;
+      font-size: 1.5rem;
+      text-transform: uppercase;
+      /* height: 100%; */
+      margin-right: auto;
+  }
+  
+  .countryForcesReport .infoCard .reportOptions .reportButtons {
+      margin-right: auto;
+      margin-left: auto;
+  }
+  
+  .countryForcesReport .reportItem {
+      padding-right: 1rem;
+      background: white;
+      cursor: pointer;
+      display: block;
+      width: 100%;
+      display: flex;
+      flex-wrap: wrap;
+      border-bottom: #ececec solid 1px;
+      transition: all 300ms cubic-bezier(0.4, 0, 1, 1);
+      padding-left: 1rem;
+      padding-bottom: .25rem;
+      padding-top: .25rem;
+  }
+  
+  #singleCountryLoaded .countryForcesReport .reportItem img {
+      height: 2.5rem;
+      width: 10%;
+      object-fit: contain;
+      object-position: center;
+  }
+  
+  #multiCountryLoaded .countryForcesReport .reportItem img {
+      height: 2.5rem;
+      object-fit: contain;
+      object-position: left;
+  }
+  
+  #singleCountryLoaded .countryForcesReport .reportItem .title {
+      display: inline-block;
+      font-weight: 400;
+      /* vertical-align: middle; */
+      font-size: 14px;
+      margin: auto;
+      width: 70%;
+      padding-left: .75rem;
+      margin-left: 0;
+  }
+  
+  #multiCountryLoaded .countryForcesReport .reportItem .title {
+      display: inline-block;
+      font-weight: 400;
+      font-size: 14px;
+      margin: auto;
+      width: 50%;
+      display: flex;
+      flex-direction: column;
+      text-align: center;
+      align-items: center;
+      font-weight: 700;
+  }
+  
+  .countryForcesReport .reportItem .quantity {
+      display: inline-block;
+      font-weight: 700;
+      vertical-align: middle;
+      font-size: 14px;
+      margin: auto;
+      margin-right: 0;
+  }
+  
+  .countryForcesReport .reportItem .quantitya {
+      font-weight: 700;
+      vertical-align: middle;
+      font-size: 14px;
+      margin: auto;
+      width: 25%;
+      text-align: center;
+  }
+  
+  .countryForcesReport .reportItem .quantityb {
+      font-weight: 700;
+      vertical-align: middle;
+      font-size: 14px;
+      margin: auto;
+      width: 25%;
+      text-align: center;
+  }
+  
+  .countryForcesReport .reportItem .description {
+      display: none;
+      font-weight: 500;
+      font-size: 12px;
+      padding: .2rem;
+  }
+  
+  #multiCountryLoaded .countryForcesReport .reportItem .description {
+      text-align: center;
+      width: 100%;
+  }
+  
+  .countryForcesReport .reportItem:last-child .description {
+      display: block;
+  }
+  
+  .countryForcesReport .reportItem:last-child .description.naval {
+      display: none !important;
+  }
+  
+  .countryForcesReport .reportItem:last-child:hover {
+      background: #f8f8f8;
+  }
+  
+  .countryForcesReport .reportItem:hover {
+      background: #f8f8f8;
+  }
+  
+  .countryForcesReport .reportItem:hover .description {
+      display: block;
+  }
+  
+  .countryForcesReport .reportItem:hover .description.naval {
+      display: block !important;
+  
+  
+  }
+  
+  .largeReportItem {
+      margin-right: .5rem;
+      text-align: center;
+      margin-left: .5rem;
+      color: white;
+  }
+  
+  .largeReportItem img {
+      max-height: 100px;
+  }
+  
+  .largeReportItem .name {
+      font-weight: 400;
+      font-size: 1rem;
+  }
+  
+  .largeReportItem .quantity {
+      font-size: 1.5rem;
+      font-weight: 900;
+  }
+  
+  .forceModel {
+      box-shadow: 0px 0px 7px 0px #dee2e6;
+      border: 1px #e9ecef solid;
+      margin-top: .25rem;
+      margin-bottom: .25rem;
+      text-align: right;
+  }
+  
+  .forceModel .modelName {
+      display: block;
+      text-align: left;
+      padding: .2rem;
+      font-size: .75rem;
+      font-weight: 400;
+      color: #585858;
+      background: #f8f8f8;
+      border-bottom: #585858 solid 1px;
+  }
+  
+  .forceModel img {
+      height: 150px;
+      width: 100%;
+      object-fit: contain;
+  }
+  
+  .forceModel .info {
+      width: 100%;
+      display: flex;
+  }
+  
+  .forceModel .modelQuantity {
+      display: inline-block;
+      margin-left: auto;
+      padding: .5em;
+      background-color: #f8f8f8;
+      font-weight: 700;
+      vertical-align: middle;
+      font-size: .60rem;
+      right: 0;
+  }
+  
+  .forceModel .modelComment {
+      display: inline-block;
+      background-color: #f8f8f8;
+      font-weight: 700;
+      vertical-align: middle;
+      font-size: .60rem;
+      right: 0;
+      line-height: 1.6rem;
+  }
+  
+  
+  .shareCard {
+      width: 640px;
+      display: flex;
+      height: 360px;
+      flex-wrap: wrap;
+      overflow: hidden;
+      background: #2e2e2e;
+  }
+  
+  .shareCard .infoSide {
+      /* flex: 1; */
+      background: #2e2e2e;
+      text-align: center;
+      display: flex;
+      /* height: 400px; */
+      width: 60%;
+      overflow: hidden;
+  }
+  
+  .shareCard .flagSide {
+      /* height: 400px; */
+      display: flex;
+      width: 40%;
+      align-items: center;
+      margin: auto;
+  }
+  
+  .shareCard .flagSide img {
+      max-width: 100%;
+  }
+  
+  .shareCard .infoSide .banner {
+      margin: auto;
+      border-top: 2px white solid;
+      border-bottom: 2px white solid;
+  }
+  
+  .shareCard .appName {
+      color: white;
+      text-transform: uppercase;
+      font-weight: 700;
+      font-size: 2rem;
+      letter-spacing: .15rem;
+  }
+  
+  .shareCard .infoTitle {
+      color: #2e2e2e;
+      text-transform: uppercase;
+      font-weight: 700;
+      font-size: 1.5rem;
+      letter-spacing: .15rem;
+      width: 100%;
+      /* text-align: center; */
+      background: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      /* align-content:  center; */
+  }
+  
+  
+  .shareCard .shareFooter {
+      display: flex;
+      width: 100%;
+      height: 227px;
+  }
+  
+  .shareCard .footerItems {
+      display: flex;
+      justify-content: center;
+  }
+  
+  
+  #multiCountryLoaded .categorySubHeader {
+      margin: auto;
+  }
+  
+  #multiCountryLoaded .first,
+  #multiCountryLoaded .second {
+      display: inline-flex;
+      flex-wrap: wrap;
+      width: 50%;
+      padding: .25rem;
+  }
+  
+  #multiCountryLoaded .first {
+      border-right: 4px solid #585858;
+  }
+  
+  
+  #multiCountryLoaded .second {
+      border-left: 4px solid #585858;
+  }
+  
+  #multiCountryLoaded .first>div,
+  #multiCountryLoaded .second>div {
+      padding: .25rem
+  }
+  
+  
+  #multiCountryLoaded .second img {
+      -webkit-transform: scaleX(-1);
+      transform: scaleX(-1);
+  }
+  
+  
+  
+  
+  
+  .personnelCardHolder {
+      display: flex;
+      flex-wrap: wrap;
+      margin: auto;
+  }
+  
+  .personnelCardHolder .personnelCard:first-child {
+      border-left: 1px solid #dee2e6
+  }
+  
+  #countryForceDetailsMulti .personnelCard:first-child {
+      border-left: unset;
+  }
+  
+  .personnelCard {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      border-right: 1px solid #dee2e6
+  }
+  
+  #countryForceDetailsMulti .personnelCard {
+      border-right: unset;
+  }
+  
+  .personnelCard .title {
+      font-weight: 700;
+      padding-top: .25rem;
+      padding-bottom: .25rem;
+      background: #dee2e6;
+      color: #585858;
+      border-bottom: #585858 solid 1px;
+      border-top: #585858 solid 1px;
+      width: 100%;
+      text-align: center;
+  }
+  
+  #countryForceDetailsMulti .personnelCard .title {
+      font-size: .75rem;
+  }
+  
+  .personnelCard img {
+      max-height: 150px;
+      width: auto;
+      padding: .25rem;
+      max-width: 100%;
+      margin: auto;
+  }
+  
+  .personnelCard .count {
+      font-weight: 700;
+      padding-top: .10rem;
+      padding-bottom: .10rem;
+      padding-right: 1.5rem;
+      padding-left: 1.5rem;
+      background: #f8f9fa;
+      color: #585858;
+      border-bottom: #dee2e6 solid 1px;
+      border-top: #dee2e6 solid 1px;
+      margin-top: auto
+  }
+  
+  
+  #multiCountryLoaded .first .personnelCard#personnel_special_forces{
+      order:1;
+  }
+  #multiCountryLoaded .first .personnelCard#personnel_paramilitary{
+      order:2;
+     
+  }
+  #multiCountryLoaded .first .personnelCard#personnel_paramilitary img{
+       -webkit-transform: scaleX(-1);
+      transform: scaleX(-1);
+  }
+  #multiCountryLoaded .second .personnelCard#personnel_paramilitary img{
+       -webkit-transform:unset;
+      transform: unset;
+  }
+  
+  #multiCountryLoaded .first .personnelCard#personnel_reserve{
+      order:3;
+  }
+  #multiCountryLoaded .first .personnelCard#personnel_active{
+      order:4;
+  }
+  
+  #multiCountryLoaded .second .personnelCard#ground_rocket_artillery{
+      order:1;
+  }
+  
+  #multiCountryLoaded .second .personnelCard#ground_towed_artillery{
+      order:2;
+  }
+  
+  #multiCountryLoaded .second .personnelCard#ground_sp_artillery{
+      order:3;
+  }
+  
+  #multiCountryLoaded .second .personnelCard#ground_airleft{
+      order:1;
+  }
+  
+  #multiCountryLoaded .second .personnelCard#ground_support_helicopters{
+      order:2;
+  }
+  
+  #multiCountryLoaded .second .personnelCard#ground_afv{
+      order:3;
+  }
+  

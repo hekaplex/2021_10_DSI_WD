@@ -105,6 +105,7 @@ AS
 			c.DepartmentID
 	GROUP BY
 		d.DepartmentName
+select * from SchedulableClasses
 /*
 What department has no classes on the schedule?
 --Political Science
@@ -164,7 +165,7 @@ AS
 (
 	SELECT 
 		CAST(
-			COUNT(*) as decimal
+			COUNT(*) as decimal --TotalEnrollment
 			) 
 			AS Qty
 	FROM 
@@ -186,25 +187,27 @@ what students are full time vs part time?
 	what $ each department contributes
 	*/
 --student enrollment
-WITH QtyEnrollBase
+CREATE VIEW EnrollmentDistribution
 AS
-(
-SELECT
-		sc.StudentID
-		,COUNT(*) QtyEnrollments
+	WITH QtyEnrollBase
+	AS
+	(
+	SELECT
+			sc.StudentID
+			,COUNT(*) QtyEnrollments
+		FROM
+			[dbo].[StudentCourses] sc
+		GROUP BY
+			sc.StudentID
+	)
+	SELECT
+		QtyEnrollments,
+		COUNT(*) NumStudents
 	FROM
-		[dbo].[StudentCourses] sc
-	GROUP BY
-		sc.StudentID
-)
-SELECT
-	QtyEnrollments,
-	COUNT(*) NumStudents
-FROM
-	QtyEnrollBase
-GROUP BY 
-	QtyEnrollments
---Part Time - QtyEnrollments = 2 or 3
+		QtyEnrollBase
+	GROUP BY 
+		QtyEnrollments
+	--Part Time - QtyEnrollments = 2 or 3
 CREATE VIEW StudentEnrollment
 AS
 WITH QtyEnrollBase
@@ -264,6 +267,7 @@ Contribution per Student
 
 --Student enrollment per Department
 --StudentID,DepartmentName,TotalUnits
+--select * from EnrollmentBaseContribution
 
 CREATE VIEW EnrollmentBaseContribution
 AS
@@ -548,5 +552,92 @@ ALTER TABLE [dbo].[Instructors]  WITH CHECK ADD FOREIGN KEY([DepartmentID])
 REFERENCES [dbo].[Departments] ([DepartmentID])
 GO
 
-
-
+WITH
+--StudentID,EnrollmentCost
+	NonClassCost
+		AS
+			(SELECT
+				es.StudentID
+				,
+				CASE
+					WHEN
+						EnrollmentStatus = 'FullTime'
+					THEN t.FullTimeCost
+					ELSE t.PartTimeCost
+				END
+					as EnrollmentBaseCost
+			FROM 
+				EnrolledStudents es
+				,Tuition t
+			)
+,
+	denominator
+		AS
+			(SELECT 
+				StudentID 
+				, SUM(DeptBaseContribution) TotalContribution
+				FROM EnrollmentBaseContribution
+			GROUP BY StudentID)
+--,
+--	contribution_raw
+--		AS	
+--		(
+		SELECT 
+			'NonTuition' as CostType
+			,ebc.StudentID
+			,ebc.DepartmentName
+			,
+				(ebc.DeptBaseContribution
+				/d.TotalContribution)
+				* n.EnrollmentBaseCost as DeptContribution
+			FROM 
+				EnrollmentBaseContribution ebc
+			JOIN 
+				denominator d 
+			on
+				d.StudentID = ebc.StudentID
+			JOIN
+				NonClassCost n
+			on
+				d.StudentID = n.StudentID
+		UNION
+		SELECT 
+			'Tuition' as CostType
+			,ebc.StudentID
+			,ebc.DepartmentName
+			,ebc.DeptBaseContribution
+			FROM 
+				EnrollmentBaseContribution ebc
+		)
+	,deptcontrib
+		AS
+			(
+				SELECT
+					DepartmentName
+					,SUM(DeptContribution) DeptContribution
+				FROM	
+					contribution_raw
+				GROUP BY 
+					DepartmentName
+			)
+	,totalcontrib
+		AS
+			(
+				SELECT
+					SUM(DeptContribution) TotalContrib
+				FROM	
+					deptcontrib
+			)
+	SELECT
+	TOP 100 PERCENT
+		d.DepartmentName
+		,d.DeptContribution
+		,
+			(d.DeptContribution
+				/
+				t.TotalContrib) as PctContribution
+		from 
+			deptcontrib d
+			, totalcontrib t
+		order by 
+		PctContribution DESC

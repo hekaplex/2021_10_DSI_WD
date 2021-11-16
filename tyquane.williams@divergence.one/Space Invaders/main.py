@@ -64,7 +64,7 @@ over_font = pygame.font.Font('freesansbold.ttf', 64)
 
 # Defining the functions that will be used for the characters and animations
 def show_score(x, y):
-    score = font.render("Score : " + str(score_value), True, (0, 255, 0))
+    score = font.render("Score : " + str(score_value), True, (0, 255, 0)) # This is where you can edit the Scores font and displayed characters
     screen.blit(score, (x, y))
 
 def game_over_text():

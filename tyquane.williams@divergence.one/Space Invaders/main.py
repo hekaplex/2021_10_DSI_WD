@@ -99,9 +99,8 @@ def isCollision(enemyX, enemyY, bulletX, bulletY):
 running = True
 while running:
     
-    # RGB (Red, Green, Blue)
+    # RGB (Red, Green, Blue)(The command: screen.fill((0, 0, 0)) needs to be above everything in the Game Loop since that is what is getting drawn on first) 
     screen.fill((0, 0, 0))
-    # Background Image
     screen.blit(background, (0, 0))
     for event in pygame.event.get():
         if event.type == pygame.QUIT:

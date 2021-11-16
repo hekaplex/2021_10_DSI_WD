@@ -55,7 +55,7 @@ bullet_state = "ready"
 
 # Score and Font
 score_value = 0
-font = pygame.font.Font('freesansbold.ttf', 32)
+font = pygame.font.Font('freesansbold.ttf', 32) # This is how you change the font and text size
 textX = 10
 testY = 10
 

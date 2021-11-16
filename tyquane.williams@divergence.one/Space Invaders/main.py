@@ -28,13 +28,13 @@ playerX = 370
 playerY = 480
 playerX_change = 0
 
-# Enemy (enemy.png image size: 64 x 64)
+# Enemy (enemy.png image size: 64 x 64)(Multiple enemies are generated through lists[])
 enemyImg = []
 enemyX = []
 enemyY = []
 enemyX_change = []
 enemyY_change = []
-num_of_enemies = 6
+num_of_enemies = 8 # This is how many enemies appear on the screen
 
 
 for i in range(num_of_enemies):
@@ -82,7 +82,7 @@ def fire_bullet(x, y):
     bullet_state = "fire"
     screen.blit(bulletImg, (x + 16, y + 10)) # This is where the bullet is fired from on the player spaceship (centered)
 
-def isCollision(enemyX, enemyY, bulletX, bulletY):
+def isCollision(enemyX, enemyY, bulletX, bulletY): # This is how a collision is detected (mathematical calculation below)
     distance = math.sqrt((math.pow(enemyX - bulletX, 2)) + math.pow(enemyY - bulletY,2))
     if distance < 27:
         return True
@@ -147,7 +147,7 @@ while running:
             enemyX_change[i] = -0.4
             enemyY[i] += enemyY_change[i]
 
-        # Collision
+        # Collision (Determines what is considered a collision)
         collison = isCollision(enemyX[i], enemyY[i], bulletX, bulletY)
         if collison: 
             explosion_Sound = mixer.Sound('explosion.wav')

@@ -16,8 +16,8 @@ screen = pygame.display.set_mode((800,600))
 background = pygame.image.load('background.png')
 
 # Background Sound
-mixer.music.load('background.wav')
-mixer.music.play(-1)
+mixer.music.load('background.wav') # This is music used for the background sound
+mixer.music.play(-1) # This function calls to play the background.wav and the -1 value will cause the sound to continously loop 
 
 # The Games Border Caption and Images (ufo.png image size: 32 x 32)
 pygame.display.set_caption("Space Invaders")
@@ -112,8 +112,8 @@ while running:
                 playerX_change = 0.5
             if event.key == pygame.K_SPACE:
                 if bullet_state is "ready":
-                    bullet_Sound = mixer.Sound('laser.wav')
-                    bullet_Sound.play()
+                    bullet_Sound = mixer.Sound('laser.wav') # This is the sound used when you fire at an enemy
+                    bullet_Sound.play() # This function calls to play the laser.wav sound
                     bulletX = playerX # Get the current x coordinate of the spaceship
                     fire_bullet(bulletX, bulletY)
         # If the a Key is released than stop             
@@ -152,8 +152,8 @@ while running:
         # Collision (Determines what is considered a collision)
         collison = isCollision(enemyX[i], enemyY[i], bulletX, bulletY)
         if collison: 
-            explosion_Sound = mixer.Sound('explosion.wav')
-            explosion_Sound.play()
+            explosion_Sound = mixer.Sound('explosion.wav') # This is the sound used when you destroy an enemy
+            explosion_Sound.play() # This function calls to play the explosion.wav sound
             bulletY = 480
             bullet_state = "ready"
             score_value += 1

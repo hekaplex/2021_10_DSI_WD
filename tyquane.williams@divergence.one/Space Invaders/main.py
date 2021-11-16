@@ -7,7 +7,7 @@ import random
 # Intialize the pygame
 pygame.init()
 
-# Create the screen
+# Create the Screen Dimensions (Width, Height)
 screen = pygame.display.set_mode((800,600))
 
 # Background
@@ -17,12 +17,12 @@ background = pygame.image.load('background.png')
 mixer.music.load('background.wav')
 mixer.music.play(-1)
 
-# Caption and Icon
+# The Games Border Caption and Images
 pygame.display.set_caption("Space Invaders")
 icon = pygame.image.load('ufo.png')
 pygame.display.set_icon(icon)
 
-# Player
+# Player (player.png image size: 64 x 64)(playerX position: 370)(playerY position: 480)
 playerImg = pygame.image.load('player.png')
 playerX = 370
 playerY = 480
@@ -66,6 +66,7 @@ testY = 10
 
 over_font = pygame.font.Font('freesansbold.ttf', 64)
 
+# Defining the functions that will be used for the characters and animations
 
 def show_score(x, y):
     score = font.render("Score : " + str(score_value), True, (0, 255, 0))
@@ -86,7 +87,6 @@ def fire_bullet(x, y):
     bullet_state = "fire"
     screen.blit(bulletImg, (x + 16, y + 10))
 
-
 def isCollision(enemyX, enemyY, bulletX, bulletY):
     distance = math.sqrt((math.pow(enemyX - bulletX, 2)) + math.pow(enemyY - bulletY,2))
     if distance < 27:
@@ -99,9 +99,8 @@ def isCollision(enemyX, enemyY, bulletX, bulletY):
 running = True
 while running:
     
-    # RGB (Red, Green, Blue)
+    # RGB (Red, Green, Blue)(The command: screen.fill((0, 0, 0)) needs to be above everything in the Game Loop since that is what is getting drawn on first) 
     screen.fill((0, 0, 0))
-    # Background Image
     screen.blit(background, (0, 0))
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -184,4 +183,4 @@ while running:
     player(playerX, playerY)
     show_score(textX, testY)
     pygame.display.update() 
-
+# The command: pygame.display.update() is constantly refreshing the image so that the player can see images and movement on the screen

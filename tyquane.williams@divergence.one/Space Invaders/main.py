@@ -106,7 +106,7 @@ while running:
         if event.type == pygame.QUIT:
             running = False
     
-        # If a keystroke is pressed check whether its LEFT or RIGHT and than move 0.5 spaces over in that direction 
+        # If a Key is pressed check whether its LEFT or RIGHT and than move 0.5 spaces over in that direction 
         # If the SPACE bar is pressed than fire a bullet from the x coordinate of the player spaceship
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_LEFT:
@@ -119,7 +119,7 @@ while running:
                     bullet_Sound.play()
                     bulletX = playerX # Get the current x coordinate of the spaceship
                     fire_bullet(bulletX, bulletY)
-                    
+        # If the a Key is released than stop             
         if event.type == pygame.KEYUP:
             if event.key == pygame.K_LEFT or event.key == pygame.K_RIGHT:
                 playerX_change = 0

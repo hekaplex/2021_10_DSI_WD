@@ -45,9 +45,7 @@ for i in range(num_of_enemies):
     enemyY_change.append(40)
 
 
-# Ready - You can't see the bullet on the screen 
-# Fire - The bullet is currently moving
-# Bullet
+# Bullet (Ready - You can't see the bullet on the screen)(Fire - The bullet is currently moving)
 bulletImg = pygame.image.load('bullet.png')
 bulletX = 0
 bulletY = 480
@@ -85,7 +83,7 @@ def enemy(x, y, i):
 def fire_bullet(x, y):
     global bullet_state
     bullet_state = "fire"
-    screen.blit(bulletImg, (x + 16, y + 10))
+    screen.blit(bulletImg, (x + 16, y + 10)) # This is where the bullet is fired from on the player spaceship (centered)
 
 def isCollision(enemyX, enemyY, bulletX, bulletY):
     distance = math.sqrt((math.pow(enemyX - bulletX, 2)) + math.pow(enemyY - bulletY,2))

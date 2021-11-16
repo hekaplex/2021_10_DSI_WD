@@ -1,2 +1,2 @@
 Great Power Competition
-https://app.powerbi.com/groups/me/reports/b9b6fda5-f365-4238-b099-bf3a01b191b7/ReportSection
+https://app.powerbi.com/groups/6d2b7992-da00-49b0-ab4c-4eedb4578d91/list

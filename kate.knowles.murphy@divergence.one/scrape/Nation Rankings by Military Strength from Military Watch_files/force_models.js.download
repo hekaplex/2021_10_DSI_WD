@@ -1,0 +1,119 @@
+function ForceModel(forceModel) {
+    this.model_id = forceModel.model_id;
+    this.model_name = forceModel.model_name;
+    this.model_image = forceModel.model_image;
+    this.model_type = forceModel.model_type;
+
+if(this.model_image.indexOf('militarywatchmagazine.com/m/fighters/') == -1){
+if (this.model_image.indexOf('../../forceapp/') !== -1) {
+            this.model_image =  this.model_image.replace('../', '/');
+
+}
+ else   if (this.model_image.indexOf('forceApp') !== -1) {
+        this.model_image =  this.model_image.replace('../', '/');
+        this.model_image =  this.model_image.replace('forceApp', 'forceapp');
+    } else  {
+        this.model_image = '/forceapp/' + this.model_image.replace('../', '/');
+    }
+    
+}
+this.model_image.trim();
+    this.forceModelCard = function (quantity) {
+
+
+        var forceModelCard = $("<div>", {
+            'class': 'col-4'
+        });
+        var forceModelItem = $("<div>", {
+            'class': 'forceModel'
+        });
+        var modelName = $("<div>", {
+            'class': 'modelName',
+            'text': this.model_name
+        });
+        var modelImage = $("<img>", {
+            'src': this.model_image
+        });
+        var modelQuantity = $("<div>", {
+            'class': 'modelQuantity',
+            'text': quantity
+        });
+
+        forceModelItem.append(modelName);
+        forceModelItem.append(modelImage);
+        forceModelItem.append(modelQuantity);
+        forceModelCard.append(forceModelItem);
+
+        return forceModelCard;
+    };
+
+
+}
+var antiAirCraftIds = [90012, 90013, 90014];
+
+function CountryForce(countryForce) {
+    this.comment = countryForce.comment;
+    this.country_id = countryForce.country_id;
+    this.force_model = new ForceModel(countryForce.force_model);
+    this.quantity = countryForce.quantity;
+
+
+    this.forceModelCard = function (type) {
+     /*   if (this.force_model.model_image.indexOf('forceApp') !== -1) {
+            this.force_model.model_image =  this.force_model.model_image.replace('../', '/').toLowerCase();
+        } else {
+            this.force_model.model_image = '/forceapp/' + this.force_model.model_image.replace('../', '/');
+        }*/
+
+        var forceModelCard = $("<div>", {
+            'class': type
+        });
+        var forceModelItem = $("<div>", {
+            'class': 'forceModel'
+        });
+        var modelName = $("<div>", {
+            'class': 'modelName',
+            'text': this.force_model.model_name
+        });
+        var modelImage = $("<img>", {
+            'src': this.force_model.model_image
+        });
+        var modelInfo = $('<div>', {
+            'class': 'info'
+        })
+        var modelQuantity = $("<div>", {
+            'class': 'modelQuantity',
+            'text': this.quantity
+        });
+        var modelComment = $("<div>", {
+            'class': 'modelComment',
+            'text': this.comment
+        });
+        forceModelItem.append(modelName);
+        forceModelItem.append(modelImage);
+        modelInfo.append(modelComment);
+        if (jQuery.inArray(parseInt(this.force_model.model_type.type_id), antiAirCraftIds) == -1) {
+            modelInfo.append(modelQuantity);
+        }
+        forceModelItem.append(modelInfo);
+        forceModelCard.append(forceModelItem);
+
+        return forceModelCard;
+    };
+
+}
+/*
+
+<fightercard class="z-depth-1">
+<fightermodelname class="wow fadeInUp" 
+style="visibility: visible;
+ animation-name: fadeInUp;">
+ Lockheed Martin F-22 Raptor
+ </fightermodelname>
+ <div class="p-2" style="height:150px">
+ <img class="img-fluid my-auto mx-auto"
+  style="max-height:125px; width:auto"
+   src="../img/fighters/lockheed_martin_f_22_raptor.png">
+   </div><fighterquantity class="wow fadeInUp" 
+   style="visibility: visible; animation-name: 
+   fadeInUp;">Quantity : 187</fighterquantity></fightercard>*/

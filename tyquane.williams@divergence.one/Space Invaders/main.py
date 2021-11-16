@@ -7,7 +7,7 @@ import random
 # Intialize the pygame
 pygame.init()
 
-# Create the screen
+# Create the Screen Dimensions (Height, Width)
 screen = pygame.display.set_mode((800,600))
 
 # Background

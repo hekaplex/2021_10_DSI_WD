@@ -42,6 +42,7 @@ def parse_data(fp, source: str):
 
     soup = BeautifulSoup(markup=source, features='html.parser')
     tags = soup.find_all('td', class_='ng-scope')
+    
     # print(tags)
     # print(tags[0].string.strip())
 

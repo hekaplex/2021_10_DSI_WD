@@ -1,0 +1,66 @@
+TMS (TMS2 - Rothbard/Salerno)
+AMS (TMS1 - Shostak)
+
+TMS =   M2 - (Traveler's checks) - (Time Deposits, including certificates of deposit)
+        - (MMMF) + (US Treasury and gov deposits held at Fed)
+
+AMS =   TMS - (Savings Deposits) + (Bank deposits sweeps) - (SFP, supplemental financing accounts)
+
+
+M2SL.csv
+  M2
+  https://fred.stlouisfed.org/series/M2SL
+  monthly
+
+TVCKSSL.csv
+  Travelers checks
+  https://fred.stlouisfed.org/series/TVCKSSL
+  monthly
+
+LTDACBM027NBOG.csv
+  Large Time Deposits, All Commercial Banks
+  https://fred.stlouisfed.org/series/LTDACBM027NBOG
+  monthly
+
+STDSL.csv
+  Small denomination time deposits
+  https://fred.stlouisfed.org/series/STDSL
+  monthly
+
+RMFSL.csv
+  Retail Money Market Funds
+  https://fred.stlouisfed.org/series/RMFSL
+  monthly
+
+TREASURY.csv
+  Treasury Deposits with Federal Reserve Banks
+  https://fred.stlouisfed.org/series/TREASURY
+  monthly
+
+https://fiscaldata.treasury.gov/datasets/daily-treasury-statement/operating-cash-balance
+
+U.S. Government Deposits: Total Cash Balance
+GDTCBW
+
+ Treasury Deposits with Federal Reserve Banks
+---------------------------------
+GDTCBW
+
+
+
+Treasury Deposits with Federal Reserve Banks
+
+Treasury Deposits with Federal Reserve Banks
+
+WSMTMNS.csv
+  Small-Denomination Time Deposits: Total
+  https://fred.stlouisfed.org/series/WSMTMNS
+  weekly
+
+
+** ignore weekly M2, leaving here for insight **
+M2.csv
+  https://fred.stlouisfed.org/series/m2
+  weekly data, discontinued
+** **
+SQLALCHEMY_DATABASE_URL = "sqlite:///./sql_app.db"

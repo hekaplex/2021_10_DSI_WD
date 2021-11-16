@@ -28,7 +28,7 @@ playerX = 370
 playerY = 480
 playerX_change = 0
 
-# Enemy
+# Enemy (enemy.png image size: 64 x 64)
 enemyImg = []
 enemyX = []
 enemyY = []
@@ -125,7 +125,7 @@ while running:
                 playerX_change = 0
     
 
-    # Checking for boundaries of spaceship so it doesn't go out of bounds
+    # Checks for the boundaries set so that the spaceship doesn't go out of bounds
     playerX += playerX_change
     
     if playerX <= 0:

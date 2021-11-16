@@ -134,9 +134,9 @@ while running:
     for i in range(num_of_enemies):
 
     # Game Over
-        if enemyY[i] > 440: # This is where the enemy will be destroyed if they reaches 440
+        if enemyY[i] > 440: # This is where the game will end if the enemy reaches this coordinate
             for j in range(num_of_enemies):
-                enemyY[j] = 2000
+                enemyY[j] = 2000 # When an enemy reaches the game over coordinate, this is where the enemies respawns in the background (off screen)
             game_over_text()
             break
 

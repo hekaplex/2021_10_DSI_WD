@@ -22,7 +22,7 @@ pygame.display.set_caption("Space Invaders")
 icon = pygame.image.load('ufo.png')
 pygame.display.set_icon(icon)
 
-# Player (player.png image size: 64 x 64)
+# Player (player.png image size: 64 x 64)(playerX position: 370)(playerY position: 480)
 playerImg = pygame.image.load('player.png')
 playerX = 370
 playerY = 480
@@ -66,6 +66,7 @@ testY = 10
 
 over_font = pygame.font.Font('freesansbold.ttf', 64)
 
+# Defining the functions that will be used for the characters and animations
 
 def show_score(x, y):
     score = font.render("Score : " + str(score_value), True, (0, 255, 0))
@@ -85,7 +86,6 @@ def fire_bullet(x, y):
     global bullet_state
     bullet_state = "fire"
     screen.blit(bulletImg, (x + 16, y + 10))
-
 
 def isCollision(enemyX, enemyY, bulletX, bulletY):
     distance = math.sqrt((math.pow(enemyX - bulletX, 2)) + math.pow(enemyY - bulletY,2))
@@ -183,4 +183,4 @@ while running:
     player(playerX, playerY)
     show_score(textX, testY)
     pygame.display.update() 
-
+# The command: pygame.display.update() is constantly refreshing the image so that the player can see images and movement on the screen

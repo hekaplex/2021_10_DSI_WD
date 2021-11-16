@@ -7,7 +7,7 @@ import random
 # Intialize the pygame
 pygame.init()
 
-# Create the Screen Dimensions (Height, Width)
+# Create the Screen Dimensions (Width, Height)
 screen = pygame.display.set_mode((800,600))
 
 # Background
@@ -17,12 +17,12 @@ background = pygame.image.load('background.png')
 mixer.music.load('background.wav')
 mixer.music.play(-1)
 
-# Titles Caption and Icon Images
+# The Games Border Caption and Images
 pygame.display.set_caption("Space Invaders")
 icon = pygame.image.load('ufo.png')
 pygame.display.set_icon(icon)
 
-# Player
+# Player (player.png image size: 64 x 64)
 playerImg = pygame.image.load('player.png')
 playerX = 370
 playerY = 480

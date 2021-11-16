@@ -106,7 +106,8 @@ while running:
         if event.type == pygame.QUIT:
             running = False
     
-        # If a keystroke is pressed check whether its right or left
+        # If a keystroke is pressed check whether its LEFT or RIGHT and than move 0.5 spaces over in that direction 
+        # If the SPACE bar is pressed than fire a bullet from the x coordinate of the player spaceship
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_LEFT:
                 playerX_change = -0.5
@@ -116,16 +117,12 @@ while running:
                 if bullet_state is "ready":
                     bullet_Sound = mixer.Sound('laser.wav')
                     bullet_Sound.play()
-                    # Get the current x coordinate of the spaceship
-                    bulletX = playerX
+                    bulletX = playerX # Get the current x coordinate of the spaceship
                     fire_bullet(bulletX, bulletY)
-        
+                    
         if event.type == pygame.KEYUP:
             if event.key == pygame.K_LEFT or event.key == pygame.K_RIGHT:
-                playerX_change = 0 
-        
-    # 5 = 5 -0.1 -> 5 = 0.1
-    # 5 = 5 + 0.1
+                playerX_change = 0
     
 
     # Checking for boundaries of spaceship so it doesn't go out of bounds

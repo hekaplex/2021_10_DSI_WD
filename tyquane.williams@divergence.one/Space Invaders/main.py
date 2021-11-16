@@ -10,7 +10,7 @@ pygame.init()
 # Create the Screen Dimensions (Width, Height)
 screen = pygame.display.set_mode((800,600))
 
-# Background
+# Background (background.png image size: 800 x 600)
 background = pygame.image.load('background.png')
 
 # Background Sound

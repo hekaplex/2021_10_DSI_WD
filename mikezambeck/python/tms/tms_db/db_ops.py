@@ -1,5 +1,6 @@
 from .database import engine, session
-from .models import M2SL
+# from .models import M2SL
+from .models import *
 from datetime import datetime
 from sqlalchemy import text as text
 
@@ -20,6 +21,7 @@ def m2_load():
     engine.execute(text('DELETE FROM m2sl').execution_options(autocommit=True))
     # load from csv
     with open('./data/M2SL.csv') as fp:
+        # skip header row
         lines = fp.readlines()[1:]
         for line in lines:
             date, data = line.split(',')
@@ -30,3 +32,28 @@ def m2_load():
             session.add(m2)
 
     session.commit()
+
+
+def csv_load(tablename: str):
+    # truncate table - no truncate in sqlite so use DELETE
+    engine.execute(text(f'DELETE FROM {tablename.lower()}').execution_options(autocommit=True))
+    # load from csv
+    with open(f'./data/{tablename.upper()}.csv') as fp:
+        # skip header row
+        lines = fp.readlines()[1:]
+        for line in lines:
+            date, data = line.split(',')
+            # string to class
+            m2 = globals()[tablename.upper()](
+                date=datetime.strptime(date, '%Y-%m-%d').date(),
+                value = data
+            )
+            session.add(m2)
+
+    session.commit()
+
+
+def csv_load_all():
+    for table in tms_tablenames:
+        print(table[0])
+        csv_load(table[0])

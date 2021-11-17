@@ -66,11 +66,16 @@ wn.onkeypress(paddle_a_down, "s") # This is where you set the button for moving 
 wn.onkeypress(paddle_b_up, "Up") # This is where you set the button for moving paddleB upwards
 wn.onkeypress(paddle_b_down, "Down")  # This is where you set the button for moving paddleB downwards
 
-
 # Main Game Loop
 while True:
     wn.update()
     
     # Move the ball
     ball.setx(ball.xcor() + ball.dx)
-    ball.sety(ball.xcor() + ball.dy)
+    ball.sety(ball.ycor() + ball.dy)
+
+    # Boundaries
+    if ball.ycor() > 290: # This is the upper boarder for the ball to bounce off from (Top)
+        ball.sety(290) # This tells the ball not to go any further than the 290 coordinate
+        ball.dy *= -1 # This tells the ball to head downwards by -1 once is reaches 290
+

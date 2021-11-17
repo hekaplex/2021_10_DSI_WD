@@ -36,8 +36,8 @@ ball.shape("square") # This is where you decided the shape of the ball
 ball.color("white") # This is where you decide the color of the ball
 ball.penup()
 ball.goto(0, 0) # This is where you decide the placement of the paddle
-ball.dx = 0.175 # This is where the ball movement is set (How fast the ball will move on screen) (Ball moves 0.2 pixels over)
-ball.dy = -0.175 # This is where the ball movement is set (How fast the ball will move on screen) (Ball moves 0.2 pixels over)
+ball.dx = 0.25 # This is where the ball movement is set (How fast the ball will move on screen) (Ball moves 0.25 pixels over)
+ball.dy = -0.25 # This is where the ball movement is set (How fast the ball will move on screen) (Ball moves 0.25 pixels over)
 
 # Pen
 pen = turtle.Turtle()

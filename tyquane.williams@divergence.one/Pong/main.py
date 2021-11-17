@@ -35,6 +35,8 @@ ball.shape("square") # This is where you decided the shape of the ball
 ball.color("white") # This is where you decide the color of the ball
 ball.penup()
 ball.goto(0, 0) # This is where you decide the placement of the paddle
+ball.dx = 0.2 # This is where the ball movement is set (ball moves 0.2 pixels over)
+ball.dy = 0.2 # This is where the ball movement is set (ball moves 0.2 pixels over)
 
 # Function
 def paddle_a_up():
@@ -68,3 +70,7 @@ wn.onkeypress(paddle_b_down, "Down")  # This is where you set the button for mov
 # Main Game Loop
 while True:
     wn.update()
+    
+    # Move the ball
+    ball.setx(ball.xcor() + ball.dx)
+    ball.sety(ball.xcor() + ball.dy)

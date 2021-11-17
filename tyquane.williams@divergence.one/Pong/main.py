@@ -35,8 +35,8 @@ ball.shape("square") # This is where you decided the shape of the ball
 ball.color("white") # This is where you decide the color of the ball
 ball.penup()
 ball.goto(0, 0) # This is where you decide the placement of the paddle
-ball.dx = 0.2 # This is where the ball movement is set (ball moves 0.2 pixels over)
-ball.dy = -0.2 # This is where the ball movement is set (ball moves 0.2 pixels over)
+ball.dx = 0.175 # This is where the ball movement is set (How fast the ball will move on screen) (Ball moves 0.2 pixels over)
+ball.dy = -0.175 # This is where the ball movement is set (How fast the ball will move on screen) (Ball moves 0.2 pixels over)
 
 # Function
 def paddle_a_up():
@@ -90,4 +90,13 @@ while True:
     if ball.xcor() < -390: # This is the left boarder for the ball to bounce off from (Left)
         ball.goto(0, 0) # This tells the ball not to go any further than the 0, 0 coordinate
         ball.dx *= -1 # This tells the ball to head downwards by -1 once is reaches the 0, 0 coordinate
+
+    # Paddle and Ball Collisions
+    if (ball.xcor() > 340 and ball.xcor() < 350) and (ball.ycor() < paddle_b.ycor() + 40 and ball.ycor() > paddle_b.ycor() -40):
+        ball.setx(340)
+        ball.dx *= -1
+
+    if (ball.xcor() < -340 and ball.xcor() > -350) and (ball.ycor() < paddle_a.ycor() + 40 and ball.ycor() > paddle_a.ycor() -40):
+        ball.setx(-340)
+        ball.dx *= -1
 

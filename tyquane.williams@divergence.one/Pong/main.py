@@ -36,7 +36,7 @@ ball.color("white") # This is where you decide the color of the ball
 ball.penup()
 ball.goto(0, 0) # This is where you decide the placement of the paddle
 ball.dx = 0.2 # This is where the ball movement is set (ball moves 0.2 pixels over)
-ball.dy = 0.2 # This is where the ball movement is set (ball moves 0.2 pixels over)
+ball.dy = -0.2 # This is where the ball movement is set (ball moves 0.2 pixels over)
 
 # Function
 def paddle_a_up():
@@ -77,5 +77,13 @@ while True:
     # Boundaries
     if ball.ycor() > 290: # This is the upper boarder for the ball to bounce off from (Top)
         ball.sety(290) # This tells the ball not to go any further than the 290 coordinate
-        ball.dy *= -1 # This tells the ball to head downwards by -1 once is reaches 290
+        ball.dy *= -1 # This tells the ball to head downwards by -1 once is reaches the 290 coordinate
+
+    if ball.ycor() < -290: # This is the lower boarder for the ball to bounce off from (Bottom)
+        ball.sety(-290) # This tells the ball not to go any further than the -290 coordinate
+        ball.dy *= -1 # This tells the ball to head upwards by -1 once is reaches the -290 coordinate
+
+    if ball.xcor() > 390:
+        ball.goto(0, 0)
+        ball.dx *= -1
 

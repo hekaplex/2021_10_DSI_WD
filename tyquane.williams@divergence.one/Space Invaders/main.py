@@ -3,6 +3,8 @@ from pygame import mixer
 
 import math
 import random
+# import pygame from pygame import mixer (This is how the game is importing it's pygame modules and sounds)
+# import math import random (This is needed to for the advance math functions in the game)
 
 # Intialize the pygame
 pygame.init()
@@ -10,14 +12,14 @@ pygame.init()
 # Create the Screen Dimensions (Width, Height)
 screen = pygame.display.set_mode((800,600))
 
-# Background
+# Background (background.png image size: 800 x 600)
 background = pygame.image.load('background.png')
 
 # Background Sound
-mixer.music.load('background.wav')
-mixer.music.play(-1)
+mixer.music.load('background.wav') # This is music used for the background sound
+mixer.music.play(-1) # This function calls to play the background.wav and the -1 value will cause the sound to continously loop 
 
-# The Games Border Caption and Images
+# The Games Border Caption and Images (ufo.png image size: 32 x 32)
 pygame.display.set_caption("Space Invaders")
 icon = pygame.image.load('ufo.png')
 pygame.display.set_icon(icon)
@@ -28,13 +30,13 @@ playerX = 370
 playerY = 480
 playerX_change = 0
 
-# Enemy
+# Enemy (enemy.png image size: 64 x 64)(Multiple enemies are generated through lists[])
 enemyImg = []
 enemyX = []
 enemyY = []
 enemyX_change = []
 enemyY_change = []
-num_of_enemies = 6
+num_of_enemies = 8 # This is how many enemies appear on the screen
 
 
 for i in range(num_of_enemies):
@@ -45,9 +47,7 @@ for i in range(num_of_enemies):
     enemyY_change.append(40)
 
 
-# Ready - You can't see the bullet on the screen 
-# Fire - The bullet is currently moving
-# Bullet
+# Bullet (Ready - You can't see the bullet on the screen)(Fire - The bullet is currently moving)
 bulletImg = pygame.image.load('bullet.png')
 bulletX = 0
 bulletY = 480
@@ -56,20 +56,17 @@ bulletY_change = 10
 bullet_state = "ready"
 
 # Score and Font
-
 score_value = 0
-font = pygame.font.Font('freesansbold.ttf', 32)
+font = pygame.font.Font('freesansbold.ttf', 32) # This is how you change the font and text size
 textX = 10
 testY = 10
 
 # Game Over Text
-
 over_font = pygame.font.Font('freesansbold.ttf', 64)
 
 # Defining the functions that will be used for the characters and animations
-
-def show_score(x, y):
-    score = font.render("Score : " + str(score_value), True, (0, 255, 0))
+def show_score(x, y): # This is defining what will be value displayed to the user when they shoot an enemy
+    score = font.render("Score : " + str(score_value), True, (0, 255, 0)) # This is where you can edit the characters displayed on screen represnting the Hits or Score
     screen.blit(score, (x, y))
 
 def game_over_text():
@@ -85,9 +82,9 @@ def enemy(x, y, i):
 def fire_bullet(x, y):
     global bullet_state
     bullet_state = "fire"
-    screen.blit(bulletImg, (x + 16, y + 10))
+    screen.blit(bulletImg, (x + 16, y + 10)) # This is where the bullet is fired from on the player spaceship (centered)
 
-def isCollision(enemyX, enemyY, bulletX, bulletY):
+def isCollision(enemyX, enemyY, bulletX, bulletY): # This is how a collision is detected (mathematical calculation below)
     distance = math.sqrt((math.pow(enemyX - bulletX, 2)) + math.pow(enemyY - bulletY,2))
     if distance < 27:
         return True
@@ -106,7 +103,8 @@ while running:
         if event.type == pygame.QUIT:
             running = False
     
-        # If a keystroke is pressed check whether its right or left
+        # If a Key is pressed check whether its LEFT or RIGHT and than move 0.5 spaces over in that direction 
+        # If the SPACE bar is pressed than fire a bullet from the x coordinate of the player spaceship
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_LEFT:
                 playerX_change = -0.5
@@ -114,21 +112,17 @@ while running:
                 playerX_change = 0.5
             if event.key == pygame.K_SPACE:
                 if bullet_state is "ready":
-                    bullet_Sound = mixer.Sound('laser.wav')
-                    bullet_Sound.play()
-                    # Get the current x coordinate of the spaceship
-                    bulletX = playerX
+                    bullet_Sound = mixer.Sound('laser.wav') # This is the sound used when you fire at an enemy
+                    bullet_Sound.play() # This function calls to play the laser.wav sound
+                    bulletX = playerX # Get the current x coordinate of the spaceship
                     fire_bullet(bulletX, bulletY)
-        
+        # If the a Key is released than stop             
         if event.type == pygame.KEYUP:
             if event.key == pygame.K_LEFT or event.key == pygame.K_RIGHT:
-                playerX_change = 0 
-        
-    # 5 = 5 -0.1 -> 5 = 0.1
-    # 5 = 5 + 0.1
+                playerX_change = 0
     
 
-    # Checking for boundaries of spaceship so it doesn't go out of bounds
+    # Checks for the boundaries set so that the spaceship doesn't go out of bounds
     playerX += playerX_change
     
     if playerX <= 0:
@@ -137,14 +131,12 @@ while running:
         playerX = 736
     
     # Enemy Movement
-    
     for i in range(num_of_enemies):
 
     # Game Over
-        if enemyY[i] > 440:
-            # This is where the enemy will be destroyed if they reaches 440
+        if enemyY[i] > 440: # This is where the game will end if the enemy reaches this coordinate
             for j in range(num_of_enemies):
-                enemyY[j] = 2000
+                enemyY[j] = 2000 # When an enemy reaches the game over coordinate, this is where the enemies respawns in the background (off screen)
             game_over_text()
             break
 
@@ -157,11 +149,11 @@ while running:
             enemyX_change[i] = -0.4
             enemyY[i] += enemyY_change[i]
 
-        # Collision
+        # Collision (Determines what is considered a collision)
         collison = isCollision(enemyX[i], enemyY[i], bulletX, bulletY)
         if collison: 
-            explosion_Sound = mixer.Sound('explosion.wav')
-            explosion_Sound.play()
+            explosion_Sound = mixer.Sound('explosion.wav') # This is the sound used when you destroy an enemy
+            explosion_Sound.play() # This function calls to play the explosion.wav sound
             bulletY = 480
             bullet_state = "ready"
             score_value += 1

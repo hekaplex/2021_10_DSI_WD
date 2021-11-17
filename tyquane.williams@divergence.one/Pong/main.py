@@ -10,6 +10,10 @@ wn.bgcolor("black") # This is where you made the background black
 wn.setup(width=800, height=600) # This is where you set the dimensions of the game window
 wn.tracer(0)
 
+# Score
+score_a = 0 # This created the variable for scoreA
+score_b = 0 # This created the variable for scoreB
+
 # Paddle A
 paddle_a = turtle.Turtle()
 paddle_a.speed(0) # This is how control the speed of the paddle
@@ -37,6 +41,16 @@ ball.penup()
 ball.goto(0, 0) # This is where you decide the placement of the paddle
 ball.dx = 0.175 # This is where the ball movement is set (How fast the ball will move on screen) (Ball moves 0.2 pixels over)
 ball.dy = -0.175 # This is where the ball movement is set (How fast the ball will move on screen) (Ball moves 0.2 pixels over)
+
+# Pen
+pen = turtle.Turtle()
+pen.speed(0)
+pen.color("white")
+pen.penup()
+pen.hideturtle()
+pen.goto(0, 260)
+pen.write("Player One: 0  Player Two: 0", align="center", font=("Courier", 24, "bold")) # This is where you can adjust your font, font size, and Display Message
+
 
 # Function
 def paddle_a_up():
@@ -86,10 +100,16 @@ while True:
     if ball.xcor() > 390: # This is the right boarder for the ball to bounce off from (Right)
         ball.goto(0, 0) # This tells the ball not to go any further than the 0, 0 coordinate
         ball.dx *= -1 # This tells the ball to head downwards by -1 once is reaches the 0, 0 coordinate
+        score_a += 1 
+        pen.clear() # This clears the old score before the new score appears over it
+        pen.write("Player One: {}  Player Two: {}".format(score_a, score_b), align="center", font=("Courier", 24, "bold"))
 
     if ball.xcor() < -390: # This is the left boarder for the ball to bounce off from (Left)
         ball.goto(0, 0) # This tells the ball not to go any further than the 0, 0 coordinate
         ball.dx *= -1 # This tells the ball to head downwards by -1 once is reaches the 0, 0 coordinate
+        score_b += 1
+        pen.clear() # This clears the old score before the new score appears over it
+        pen.write("Player One: {}  Player Two: {}".format(score_a, score_b), align="center", font=("Courier", 24, "bold"))
 
     # Paddle and Ball Collisions
     if (ball.xcor() > 340 and ball.xcor() < 350) and (ball.ycor() < paddle_b.ycor() + 40 and ball.ycor() > paddle_b.ycor() -40):

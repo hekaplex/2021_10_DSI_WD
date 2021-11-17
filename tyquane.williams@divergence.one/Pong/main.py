@@ -83,7 +83,11 @@ while True:
         ball.sety(-290) # This tells the ball not to go any further than the -290 coordinate
         ball.dy *= -1 # This tells the ball to head upwards by -1 once is reaches the -290 coordinate
 
-    if ball.xcor() > 390:
-        ball.goto(0, 0)
-        ball.dx *= -1
+    if ball.xcor() > 390: # This is the right boarder for the ball to bounce off from (Right)
+        ball.goto(0, 0) # This tells the ball not to go any further than the 0, 0 coordinate
+        ball.dx *= -1 # This tells the ball to head downwards by -1 once is reaches the 0, 0 coordinate
+
+    if ball.xcor() < -390: # This is the left boarder for the ball to bounce off from (Left)
+        ball.goto(0, 0) # This tells the ball not to go any further than the 0, 0 coordinate
+        ball.dx *= -1 # This tells the ball to head downwards by -1 once is reaches the 0, 0 coordinate
 

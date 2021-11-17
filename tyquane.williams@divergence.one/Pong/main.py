@@ -1,8 +1,7 @@
 #
 #
-#
-
 import turtle # This is a bulit in module called Turtle. (This is not Pygame!)
+import winsound
 
 wn = turtle.Screen() # This is how you create the screen
 wn.title("Pong") # This is where you can change the title
@@ -92,6 +91,7 @@ while True:
     if ball.ycor() > 290: # This is the upper boarder for the ball to bounce off from (Top)
         ball.sety(290) # This tells the ball not to go any further than the 290 coordinate
         ball.dy *= -1 # This tells the ball to head downwards by -1 once is reaches the 290 coordinate
+        winsound.PlaySound("bounce.wav")
 
     if ball.ycor() < -290: # This is the lower boarder for the ball to bounce off from (Bottom)
         ball.sety(-290) # This tells the ball not to go any further than the -290 coordinate

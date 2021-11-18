@@ -3,14 +3,17 @@ import pygame
 import sys
 import math
 
+# RGB
 BLUE = (0,0,255)
 BLACK = (0,0,0)
 RED = (255,0,0)
 YELLOW = (255,255,0)
 
+# Rows and Columns
 ROW_COUNT = 6
 COLUMN_COUNT = 7
 
+# Defining Variables
 def create_board(): # This is where you are defining the variable
     board = np.zeros((ROW_COUNT, COLUMN_COUNT)) # This is where you decide how many rows and colums are displayed (up/down, right/left)
     return board # This is where your returning the function
@@ -80,7 +83,6 @@ SQUARESIZE = 100
 
 width = COLUMN_COUNT * SQUARESIZE
 height = (ROW_COUNT+1) * SQUARESIZE
-
 size = (width, height)
 
 RADIUS = int(SQUARESIZE/2 - 5)
@@ -89,8 +91,9 @@ screen = pygame.display.set_mode(size)
 draw_board(board)
 pygame.display.update()
 
-myfont = pygame.font.SysFont("monospace", 75)
+myfont = pygame.font.SysFont("monospace", 75) # This is how you change the font
 
+# Game Loop
 while not game_over:
     
     for event in pygame.event.get():
@@ -108,7 +111,6 @@ while not game_over:
 
         if event.type == pygame.MOUSEBUTTONDOWN: 
             pygame.draw.rect(screen, BLACK, (0,0, width, SQUARESIZE))
-            #print(event.pos)
             
             # Ask for Player 1 Input
             if turn == 0:

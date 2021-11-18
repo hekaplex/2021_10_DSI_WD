@@ -12,12 +12,13 @@ def get_valid_int():
 
 def get_factor_count(num):
     factor_count = 0
-    # this loop includes 1 and num
+    factors = []
     for i in range(1, num+1):
         remainder = num % i
         if remainder == 0:
             factor_count +=1
-    return factor_count
+            factors.append(i)
+    return factor_count, factors
 
 def main():
     display_title()
@@ -25,18 +26,20 @@ def main():
     again = 'y'
     while again == 'y':
         num = get_valid_int()
-        factor_count = get_factor_count(num)
+        factor_count = get_factor_count(num)[0]
+        factors = get_factor_count(num)[1]
         if factor_count == 2:
             print(f"{num} is a prime number.")
         else:
             print(f"{num} is NOT a prime number.")
-            print(f"It has {factor_count} factors.")            
+            print(f"It has {factor_count} factors.:", end=" ")
+            for i in factors:
+                print(i, end=" ")            
         print()
         again = input("Try again? (y/n): ")
         print()
         
     print("Bye!")
 
-# if started as the main module, call the main function
 if __name__ == "__main__":
     main()

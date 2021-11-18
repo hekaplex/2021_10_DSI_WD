@@ -6,36 +6,44 @@ TMS =   M2 - (Traveler's checks) - (Time Deposits, including certificates of dep
 
 AMS =   TMS - (Savings Deposits) + (Bank deposits sweeps) - (SFP, supplemental financing accounts)
 
+TMS Data
 
-M2SL.csv
-  M2
-  https://fred.stlouisfed.org/series/M2SL
-  monthly
+    M2SL.csv
+      M2
+      https://fred.stlouisfed.org/series/M2SL
+      monthly
+      < 05/2020 includes savings
+      >= 05/2020 excludes savings
 
-TVCKSSL.csv
-  Travelers checks
-  https://fred.stlouisfed.org/series/TVCKSSL
-  monthly
+    TVCKSSL.csv
+      Travelers checks
+      https://fred.stlouisfed.org/series/TVCKSSL
+      monthly
 
-LTDACBM027NBOG.csv
-  Large Time Deposits, All Commercial Banks
-  https://fred.stlouisfed.org/series/LTDACBM027NBOG
-  monthly
+    LTDACBM027NBOG.csv
+      Large Time Deposits, All Commercial Banks
+      https://fred.stlouisfed.org/series/LTDACBM027NBOG
+      monthly
 
-STDSL.csv
-  Small denomination time deposits
-  https://fred.stlouisfed.org/series/STDSL
-  monthly
+    STDSL.csv
+      Small denomination time deposits
+      https://fred.stlouisfed.org/series/STDSL
+      monthly
 
-RMFSL.csv
-  Retail Money Market Funds
-  https://fred.stlouisfed.org/series/RMFSL
-  monthly
+    RMFSL.csv
+      Retail Money Market Funds
+      https://fred.stlouisfed.org/series/RMFSL
+      monthly
 
-TREASURY.csv
-  Treasury Deposits with Federal Reserve Banks
-  https://fred.stlouisfed.org/series/TREASURY
-  monthly
+    TREASURY.csv
+      Treasury Deposits with Federal Reserve Banks
+      https://fred.stlouisfed.org/series/TREASURY
+      monthly
+
+AMS Data
+
+
+
 
 https://fiscaldata.treasury.gov/datasets/daily-treasury-statement/operating-cash-balance
 

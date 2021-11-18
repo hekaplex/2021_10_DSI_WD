@@ -4,6 +4,7 @@ import sys
 
 BLUE = (0,0,255)
 BLACK = (0,0,0)
+
 ROW_COUNT = 6
 COLUMN_COUNT = 7
 
@@ -53,8 +54,8 @@ def winning_move(board, piece):
 def draw_board(board):
     for c in range(COLUMN_COUNT):
         for r in range(ROW_COUNT):
-            pygame.draw.rect(screen, BLUE(c*SQUARESIZE, r*SQUARESIZE+SQUARESIZE, SQUARESIZE, SQUARESIZE))
-            pygame.draw.circle(screen, BLACK, (c*SQUARESIZE+SQUARESIZE/2, r*SQUARESIZE+SQUARESIZE+SQUARESIZE/2))
+            pygame.draw.rect(screen, BLUE, (c*SQUARESIZE, r*SQUARESIZE+SQUARESIZE, SQUARESIZE, SQUARESIZE))
+            pygame.draw.circle(screen, BLACK, (int(c*SQUARESIZE+SQUARESIZE/2), int(r*SQUARESIZE+SQUARESIZE+SQUARESIZE/2)), RADIUS)
 
 
 board = create_board()
@@ -101,21 +102,21 @@ while not game_over:
                         #game_over = True
     
     
-    # Ask for Player 2 Input
-    #else:
-        #col = int(input("Player 2 Make Your Selection (0-6):"))
+            # Ask for Player 2 Input
+            #else:
+                #col = int(input("Player 2 Make Your Selection (0-6):"))
 
-        #if is_valid_location(board, col):
-            #row = get_next_open_row(board, col)
-            #drop_piece(board, row, col, 2)
+                #if is_valid_location(board, col):
+                    #row = get_next_open_row(board, col)
+                    #drop_piece(board, row, col, 2)
 
-            #if winning_move(board, 2): 
-                #print("Player 2 Wins!")
-                #game_over = True
+                    #if winning_move(board, 2): 
+                        #print("Player 2 Wins!")
+                        #game_over = True
 
-    #print_board(board)
+            #print_board(board)
 
-    #turn += 1
-    #turn = turn % 2
+            #turn += 1
+            #turn = turn % 2
 
 

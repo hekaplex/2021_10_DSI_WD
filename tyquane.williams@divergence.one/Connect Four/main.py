@@ -8,7 +8,7 @@ def create_board(): # This is where you are defining the variable
     return board # This is where your returning the function
 
 def drop_piece(board, row, col, piece):
-    board[row][col] == piece
+    board[row][col] = piece
     
 def is_valid_location(board, col):
     return board[5][col] == 0

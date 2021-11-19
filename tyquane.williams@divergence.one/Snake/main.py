@@ -8,6 +8,10 @@ import random
 
 delay = 0.1
 
+# Score
+score = 0
+high_score = 0
+
 # Screen Setup
 wn = turtle.Screen()
 wn.title("Snake") # This is where you change the Title 
@@ -102,6 +106,15 @@ while True:
         # Clear the segments
         segments.clear()
 
+        # Reset the score
+        score = 0
+        
+        # Reset the delay
+        delay = 0.1
+
+        # Update the score display
+        pen.clear() # This allows the new score to be drawn over the old score
+        pen.write("Score: {} High Score {}".format(score, high_score), align="center", font =("Courier", 24, "bold")) # This shows the user the high score with font
 
     # Check for a collision with the food
     if head.distance(food) < 20:
@@ -118,6 +131,18 @@ while True:
         new_segment.penup()
         segments.append(new_segment)
 
+        # Shorten the delay
+        delay -= 0.001
+
+        # Increase the score
+        score += 10
+
+        if score > high_score:
+            high_score = score
+
+        pen.clear() # This allows the new score to be drawn over the old score
+        pen.write("Score: {} High Score {}".format(score, high_score), align="center", font =("Courier", 24, "bold"))
+
     # Move the end segments first in reverse order
     for index in range(len(segments)-1, 0, -1):
         x = segments[index-1].xcor()
@@ -129,7 +154,6 @@ while True:
         x = head.xcor()
         y = head.ycor()
         segments[0].goto(x,y)
-
 
     move()
 
@@ -147,6 +171,15 @@ while True:
             # Clear the segments
             segments.clear()
 
+            # Reset the score
+            score = 0
+
+            # Reset the delay
+            delay = 0.1
+        
+            # Update the score display
+            pen.clear() # This allows the new score to be drawn over the old score
+            pen.write("Score: {} High Score {}".format(score, high_score), align="center", font =("Courier", 24, "bold")) # This shows the user the high score with font
 
     time.sleep(delay)
 

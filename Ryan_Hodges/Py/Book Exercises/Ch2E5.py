@@ -22,4 +22,4 @@ hoursToDestination = milesToLocation//milesPerHour
 minutesToDestination = milesToLocation%milesPerHour
 
 print("\n Hours: \t" + str(hoursToDestination))
-print("\n Hours: \t" + str(minutesToDestination))
+print("Minutes: \t" + str(minutesToDestination))

@@ -34,6 +34,16 @@ food.goto(0,100) # Starting position
 
 segments = []
 
+# Pen
+pen = turtle.Turtle()
+pen.speed(0) # This is the animation speed
+pen.shape("square") # This is where you select a shape for the snake head
+pen.color("white")
+pen.penup()
+pen.hideturtle()
+pen.goto(0, 260)
+pen.write("Score: 0  High Score: 0", align="center", font=("Courier", 24, "bold"))
+
 # Functions
 def go_up():
     if head.direction != "down":

@@ -56,10 +56,10 @@ def move():
 
 # Keyboard Bindings
 wn.listen()
-wn.onkeypress(go_up, "w")
-wn.onkeypress(go_down, "s")
-wn.onkeypress(go_left, "a")
-wn.onkeypress(go_right, "d")
+wn.onkeypress(go_up, "w") # The Snake will go up when you press w on the keyboard
+wn.onkeypress(go_down, "s") # The Snake will go down when you press s on the keyboard
+wn.onkeypress(go_left, "a") # The Snake will go left when you press a on the keyboard
+wn.onkeypress(go_right, "d") # The Snake will go right when you press d on the keyboard
 
 # Main Game Loop
 while True:

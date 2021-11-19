@@ -4,6 +4,7 @@
 
 import turtle
 import time
+import random
 
 delay = 0.1
 
@@ -23,6 +24,13 @@ head.penup()
 head.goto(0,0)
 head.direction = "stop" # This is where you can decide the direction the snake will go
 
+# Snake Food
+food = turtle.Turtle()
+food.speed(0) # This is the animation speed
+food.shape("circle") # This is where you select a shape for the snake head
+food.color("red")
+food.penup()
+food.goto(0,100) # Starting position
 
 # Functions
 def go_up():
@@ -64,6 +72,12 @@ wn.onkeypress(go_right, "d") # The Snake will go right when you press d on the k
 # Main Game Loop
 while True:
     wn.update()
+
+    if head.distance(food) < 20:
+        # Move the food to a random spot
+        x = random.randint(-290, 290)
+        y = random.randint(-290, 290)
+        food.goto(x, y)
 
     move()
 

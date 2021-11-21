@@ -15,30 +15,84 @@ TMS Data
       < 05/2020 includes savings
       >= 05/2020 excludes savings
 
+            M2.csv
+            M2
+            https://fred.stlouisfed.org/series/M2
+            weekly
+            ending monday
+            billions
+            1980-11-03 to 2021-02-01
+
+
     TVCKSSL.csv
       Travelers checks
       https://fred.stlouisfed.org/series/TVCKSSL
       monthly
+
+            WTCSL.csv
+            Travelers checks
+            https://fred.stlouisfed.org/series/WTCSL
+            weekly
+            ending monday
+            billions
+            1975-01-06 to 2018-12-31
+
 
     LTDACBM027NBOG.csv
       Large Time Deposits, All Commercial Banks
       https://fred.stlouisfed.org/series/LTDACBM027NBOG
       monthly
 
+            LTDACBM027NBOG.csv
+            Large Time Deposits, All Commercial Banks
+            https://fred.stlouisfed.org/series/LTDACBM027NBOG
+            monthly
+            billions
+            1973-01-01 to 2021-10-01
+
+
     STDSL.csv
       Small denomination time deposits
       https://fred.stlouisfed.org/series/STDSL
       monthly
+
+            WSMTIME.csv
+            Small denomination time deposits
+            https://fred.stlouisfed.org/series/WSMTIME
+            weekly
+            ending monday
+            billions
+            1975-01-06 to 2021-02-01
+
 
     RMFSL.csv
       Retail Money Market Funds
       https://fred.stlouisfed.org/series/RMFSL
       monthly
 
+            WRMFSL.csv
+            Retail Money Market Funds
+            https://fred.stlouisfed.org/series/WRMFSL
+            weekly
+            ending monday
+            billions
+            1980-02-04 to 2021-02-01
+
+
     TREASURY.csv
       Treasury Deposits with Federal Reserve Banks
       https://fred.stlouisfed.org/series/TREASURY
       monthly
+
+            WTREGEN.csv
+            Liabilities and Capital: Liabilities: Deposits with F.R. Banks
+            https://fred.stlouisfed.org/series/WTREGEN
+            weekly
+            ending wednesday
+            billions
+            1986-01-08 to 2021-11-17
+
+
 
 AMS Data
 
@@ -72,3 +126,11 @@ M2.csv
   weekly data, discontinued
 ** **
 SQLALCHEMY_DATABASE_URL = "sqlite:///./sql_app.db"
+
+0 mon
+1 tue
+2 wed
+3 thur
+4 fri
+5 sat
+6 sun

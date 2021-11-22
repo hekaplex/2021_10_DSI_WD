@@ -1,5 +1,0 @@
-Created Model-driven APP via Make Power Apps(https://make.powerapps.com/).
-Connected the APP with CDS database, this also enabled the connection between the Canvas and Model-driven APPs.
-Created business process flow using Power Automate(https://us.flow.microsoft.com/)
-Configure the CDS database table to capture new information needed for the precurement process.
-The Model-driven APP is to complete the back-office process of managing procurement, setting up device and distribution.

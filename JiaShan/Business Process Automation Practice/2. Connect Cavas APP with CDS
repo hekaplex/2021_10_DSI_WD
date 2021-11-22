@@ -1,4 +1,0 @@
-Configured a table in CDS database.
-Used Power Apps form control to populate the table, making the connection bewteen "JiaShan_DeivceOrderApp" and CDS.
-Now the APP can collect information from customer input and store it in CDS.
-It also enables the APP to utilize the submitted information to present customers a summary page.

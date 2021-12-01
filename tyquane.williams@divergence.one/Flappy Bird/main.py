@@ -30,7 +30,7 @@ while True:
             sys.exit()
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_SPACE:
-                print("flap")
+                bird_movement -= 12
 
 
     screen.blit(bg_surface,(0,0))

@@ -30,6 +30,7 @@ while True:
             sys.exit()
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_SPACE:
+                bird_movement = 0
                 bird_movement -= 12
 
 

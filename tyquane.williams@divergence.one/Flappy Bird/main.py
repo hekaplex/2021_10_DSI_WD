@@ -28,6 +28,10 @@ while True:
         if event.type == pygame.QUIT:
             pygame.quit()
             sys.exit()
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_SPACE:
+                print("flap")
+
 
     screen.blit(bg_surface,(0,0))
     

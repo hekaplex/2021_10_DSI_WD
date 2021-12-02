@@ -23,6 +23,12 @@ def draw_pipes(pipes):
             flip_pipe = pygame.transform.flip(pipe_surface,False,True)
             screen.blit(flip_pipe,pipe)
 
+def check_collision(pipes):
+    for pipe in pipes:
+        if bird_rect.colliderect(pipe):
+            print('collision')
+
+
 pygame.init()
 screen = pygame.display.set_mode((576, 1024))
 clock = pygame.time.Clock()
@@ -68,7 +74,8 @@ while True:
     bird_movement += gravity
     bird_rect.centery += bird_movement
     screen.blit(bird_surface,bird_rect)
-    
+    check_collision(pipe_list)
+ 
     # Pipes
     pipe_list = move_pipes(pipe_list)
     draw_pipes(pipe_list)

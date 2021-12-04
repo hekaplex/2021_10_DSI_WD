@@ -18,6 +18,8 @@ markers = []
 clicked = False
 pos = []
 player = 1
+winner = 0
+game_over = False
 
 
 # Define Colors
@@ -52,6 +54,40 @@ def draw_markers():
         x_pos +=1
 
 
+
+def check_winner():
+
+    global winner
+    global game_over
+
+    y_pos = 0
+    for x in markers:
+        # Check Columns
+        if sum(x) ==3:
+            winner = 1
+            game_over = True
+        if sum(x) == -3:
+            winner = 2
+            game_over = True
+        # Check roles
+        if markers[0][y_pos] + markers[1][y_pos] + markers[2][y_pos] == 3:
+            winner = 1
+            game_over = True
+        if markers[0][y_pos] + markers[1][y_pos] + markers[2][y_pos] == -3:
+            winner = 2
+            game_over = True
+        y_pos += 1
+
+
+    # Check Cross
+    if markers[0][0] + markers[1][1] + markers[2][2] == 3 or markers[2][0] + markers[1][1] + markers[0][2] == 3:
+        winner = 1
+        game_over = True
+    if markers[0][0] + markers[1][1] + markers[2][2] == -3 or markers[2][0] + markers[1][1] + markers[0][2] == -3:
+        winner = 2
+        game_over = True
+        
+
 run = True
 while run:
 
@@ -62,18 +98,18 @@ while run:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             run = False
-        if event.type == pygame.MOUSEBUTTONDOWN and clicked == False:
-            clicked = True
-        if event.type == pygame.MOUSEBUTTONUP and clicked == True:
-            clicked = False
-            pos = pygame.mouse.get_pos()
-            cell_x = pos[0]
-            cell_y = pos[1]
-            if markers[cell_x // 100][cell_y // 100] == 0:
-                markers[cell_x // 100][cell_y // 100] = player
-                player *= -1
-
-
+        if game_over ==0:
+            if event.type == pygame.MOUSEBUTTONDOWN and clicked == False:
+                clicked = True
+            if event.type == pygame.MOUSEBUTTONUP and clicked == True:
+                clicked = False
+                pos = pygame.mouse.get_pos()
+                cell_x = pos[0]
+                cell_y = pos[1]
+                if markers[cell_x // 100][cell_y // 100] == 0:
+                    markers[cell_x // 100][cell_y // 100] = player
+                    player *= -1
+                    check_winner()
 
 
     pygame.display.update()

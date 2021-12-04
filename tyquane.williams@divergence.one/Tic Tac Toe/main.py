@@ -14,6 +14,7 @@ pygame.display.set_caption('TicTacToe')
 
 # Define Variables
 line_width = 6 # Thickness of the line
+markers = []
 
 def draw_grid():
     bg = (255, 255, 200)
@@ -23,6 +24,12 @@ def draw_grid():
         pygame.draw.line(screen, grid, (0, x * 100), (screen_width, x * 100), line_width)
         pygame.draw.line(screen, grid, (x * 100, 0), (x * 100, screen_width), line_width)
 
+for x in range(3):
+    row = [0] * 3
+    markers.append(row)
+
+
+print(markers)
 
 run = True
 while run:

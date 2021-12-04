@@ -21,10 +21,14 @@ player = 1
 winner = 0
 game_over = False
 
+# Define Colours
+font = pygame.font.SysFont(None, 40)
+
 
 # Define Colors
 green = (0, 255, 0)
 red = (255, 0, 0)
+blue = (0, 0, 255)
 
 def draw_grid():
     bg = (255, 255, 200)
@@ -88,6 +92,16 @@ def check_winner():
         game_over = True
         
 
+def draw_winner(winner):
+    win_text = "Player " + str(winner) + " Wins!"
+    win_img = font.render(win_text, True, blue)
+    pygame.draw.rect(screen, green, (screen_width // 2 - 100, screen_height // 2 - 60, 200, 50))
+    screen.blit(win_img, (screen_width // 2 - 100, screen_height // 2 - 50))
+
+
+
+
+
 run = True
 while run:
 
@@ -112,8 +126,13 @@ while run:
                     check_winner()
 
 
+    if game_over == True:
+        draw_winner(winner)
+
     pygame.display.update()
+        
     
+
 pygame.quit()
 
 

@@ -66,6 +66,8 @@ while run:
     # Draw Panel
     draw_panel()
 
+    # Draw Fighters
+    knight.draw()
 
     for event in pygame.event.get():
         if event.type == pygame.QUIT:

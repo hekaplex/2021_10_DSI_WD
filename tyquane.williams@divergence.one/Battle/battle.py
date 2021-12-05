@@ -42,7 +42,8 @@ class Fighter():
         self.start_portions = potions
         self.portions = potions
         self.alive = True
-        self.image = pygame.image.load(f'Assets/Battle/{self.name}/Idle/0.png') # {self.name} is the class for the Knight images located in the Assets/Battle/Knight. f is needed
+        img = pygame.image.load(f'Assets/Battle/{self.name}/Idle/0.png') # {self.name} is the class for the Knight images located in the Assets/Battle/Knight. f is needed
+        self.image = pygame.transform.scale(img, (img.get_width() * 3, img.get_height() * 3))
         self.rect = self.image.get_rect()
         self.rect.center = (x, y)
 

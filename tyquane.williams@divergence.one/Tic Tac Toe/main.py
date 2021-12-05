@@ -1,4 +1,3 @@
-# Part 1
 import pygame
 from pygame.locals import *
 
@@ -64,7 +63,6 @@ def draw_markers():
         x_pos +=1
 
 
-
 def check_winner():
 
     global winner
@@ -79,7 +77,7 @@ def check_winner():
         if sum(x) == -3:
             winner = 2
             game_over = True
-        # Check roles
+        # Check Roles
         if markers[0][y_pos] + markers[1][y_pos] + markers[2][y_pos] == 3:
             winner = 1
             game_over = True
@@ -154,10 +152,6 @@ while run:
                         markers.append(row)
 
     pygame.display.update()
-        
-    
+           
 
 pygame.quit()
-
-
-

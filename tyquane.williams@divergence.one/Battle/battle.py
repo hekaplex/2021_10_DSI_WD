@@ -53,7 +53,12 @@ class Fighter():
 
 
 knight = Fighter(200, 260, 'Knight', 30, 10, 3)
+bandit1 = Fighter(550, 270, 'Bandit', 20, 6, 1)
+bandit2 = Fighter(700, 270, 'Bandit', 20, 6, 1)
 
+bandit_list = []
+bandit_list.append(bandit1)
+bandit_list.append(bandit2)
 
 
 run = True
@@ -69,6 +74,8 @@ while run:
 
     # Draw Fighters
     knight.draw()
+    for bandit in bandit_list:
+        bandit.draw()
 
     for event in pygame.event.get():
         if event.type == pygame.QUIT:

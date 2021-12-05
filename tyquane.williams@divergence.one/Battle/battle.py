@@ -14,11 +14,24 @@ screen = pygame.display.set_mode((screen_width, screen_height))
 pygame.display.set_caption('Battle')
 
 
+# Define Fonts
+font = pygame.font.SysFont('Times New Roman', 26)
+
+# Define Colors
+red = (255, 0, 0)
+green = (0, 255, 0)
+
 # Load Images
 # Background Image
 background_img = pygame.image.load('Assets/Battle/Background/background.png').convert_alpha()
 # Panel Image
 panel_img = pygame.image.load('Assets/Battle/Icons/panel.png').convert_alpha()
+
+
+# Create Function for drawing text
+def draw_text(text, font, text_col, x, y):
+    img = font.render(text, True, text_col)
+    screen.blit(img, (x, y))
 
 
 # Function for drawing background
@@ -28,7 +41,10 @@ def draw_bg():
 
 # Function for drawing panel
 def draw_panel():
+    # Draw Panel Rectangle
     screen.blit(panel_img, (0, screen_height - bottom_panel))
+    # Show Knight Stats
+    draw_text(f'{knight.name} HP: {knight.hp}', font, red, 100, screen_height - bottom_panel +  10)
 
 
 

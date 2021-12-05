@@ -44,12 +44,23 @@ class Fighter():
         self.alive = True
         self.animation_list = []
         self.frame_index = 0
+        self.action = 0 # This is where you can decide which motions the characters will do onscreen by cycling through that image folder 0: idle, 1: attack, 2: hurt, 3: dead
         self.update_time = pygame.time.get_ticks()
-        for i in range(8):
+        # Load Idle Images
+        temp_list = []
+        for i in range(8): # The number of images in list equals 8 but you can change that depending on the amount of images you want cycled through in the actual folder
             img = pygame.image.load(f'Assets/Battle/{self.name}/Idle/{i}.png') # {self.name} is the class for the Knight images located in the Assets/Battle/Knight. f is needed
             img = pygame.transform.scale(img, (img.get_width() * 3, img.get_height() * 3))
-            self.animation_list.append(img)
-        self.image = self.animation_list[self.frame_index]
+            temp_list.append(img)
+        self.animation_list.append(temp_list)
+        # Load Attack Images
+        temp_list = []
+        for i in range(8): # The number of images in list equals 8 but you can change that depending on the amount of images you want cycled through in the actual folder
+            img = pygame.image.load(f'Assets/Battle/{self.name}/Attack/{i}.png') # {self.name} is the class for the Knight images located in the Assets/Battle/Knight. f is needed
+            img = pygame.transform.scale(img, (img.get_width() * 3, img.get_height() * 3))
+            temp_list.append(img)
+        self.animation_list.append(temp_list)
+        self.image = self.animation_list[self.action][self.frame_index]
         self.rect = self.image.get_rect()
         self.rect.center = (x, y)
 
@@ -58,13 +69,13 @@ class Fighter():
         animation_cooldown = 100
         # Handle Animation
         # Update Image
-        self.image = self.animation_list[self.frame_index]
+        self.image = self.animation_list[self.action][self.frame_index]
         # Check if enough time has passed since the last update
         if pygame.time.get_ticks() - self.update_time > animation_cooldown:
             self.update_time = pygame.time.get_ticks()
             self.frame_index += 1
         # If the animation has run out then reset back to the start
-        if self.frame_index >= len(self.animation_list):
+        if self.frame_index >= len(self.animation_list[self.action]):
             self.frame_index = 0
         
 

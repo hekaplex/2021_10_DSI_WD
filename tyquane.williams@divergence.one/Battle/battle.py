@@ -2,9 +2,11 @@ import pygame
 
 pygame.init()
 
+clock = pygame.time.Clock()
+fps = 60
 
 # Game Window
-bottom_panel = 150
+bottom_panel = 150 # This will represent the area that the bottom pictures takes up
 screen_width = 800
 screen_height = 400 + bottom_panel
 
@@ -31,6 +33,8 @@ def draw_panel():
 
 run = True
 while run:
+
+    clock.tick(fps)
 
     # Draw Background
     draw_bg()

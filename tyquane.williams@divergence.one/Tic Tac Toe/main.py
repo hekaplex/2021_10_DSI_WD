@@ -21,8 +21,14 @@ player = 1
 winner = 0
 game_over = False
 
-# Define Colours
+# Define Colors
 font = pygame.font.SysFont(None, 40)
+
+# Define Font
+font = pygame.font.SysFont(None, 40)
+
+# Create Play Again Rectangle
+again_rect = Rect(screen_width // 2 - 80, screen_height // 2, 160, 50)
 
 
 # Define Colors
@@ -98,8 +104,10 @@ def draw_winner(winner):
     pygame.draw.rect(screen, green, (screen_width // 2 - 100, screen_height // 2 - 60, 200, 50))
     screen.blit(win_img, (screen_width // 2 - 100, screen_height // 2 - 50))
 
-
-
+    again_text = 'Play Again?'
+    again_img = font.render(again_text, True, blue)
+    pygame.draw.rect(screen, green, again_rect)
+    screen.blit(again_img, (screen_width // 2 -80, screen_height // 2 + 10))
 
 
 run = True
@@ -128,6 +136,22 @@ while run:
 
     if game_over == True:
         draw_winner(winner)
+        # Check for mouseclick to see if user has clicked on Play Again
+        if event.type == pygame.MOUSEBUTTONDOWN and clicked == False:
+                clicked = True
+        if event.type == pygame.MOUSEBUTTONUP and clicked == True:
+                clicked = False
+                pos = pygame.mouse.get_pos()
+                if again_rect.collidepoint(pos):
+                    # Reset Variables
+                    markers = []
+                    pos = []
+                    player = 1
+                    winner = 0
+                    game_over = False
+                    for x in range(3):
+                        row = [0] * 3
+                        markers.append(row)
 
     pygame.display.update()
         
@@ -137,21 +161,3 @@ pygame.quit()
 
 
 
-#
-#
-#
-
-
-
-# Part 2
-#
-#
-#
-
-
-# Part 3
-#
-
-#
-
-# Reset Game

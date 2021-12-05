@@ -31,6 +31,30 @@ def draw_panel():
     screen.blit(panel_img, (0, screen_height - bottom_panel))
 
 
+
+# Fighter Class
+class Fighter():
+    def __init__(self, x, y, name, max_hp, strength, potions): # This is where you define the class
+        self.name = name
+        self.max_hp = max_hp
+        self.hp = max_hp
+        self.strength = strength
+        self.start_portions = potions
+        self.portions = potions
+        self.alive = True
+        self.image = pygame.image.load(f'Assets/Battle/{self.name}/Idle/0.png') # {self.name} is the class for the Knight images located in the Assets/Battle/Knight. f is needed
+        self.rect = self.image.get_rect()
+        self.rect.center = (x, y)
+
+
+    def draw(self):
+        screen.blit(self.image, self.rect)
+
+
+knight = Fighter(200, 260, 'Knight', 30, 10, 3)
+
+
+
 run = True
 while run:
 

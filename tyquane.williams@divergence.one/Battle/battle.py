@@ -220,6 +220,8 @@ while run:
                 target = bandit_list[count]
     if potion_button.draw():
         potion = True
+    # Show number of potions remaining
+    draw_text(str(knight.potions), font, red, 150, screen_height - bottom_panel + 70)
 
 
     # Player Action

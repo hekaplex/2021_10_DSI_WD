@@ -1,4 +1,5 @@
 import pygame
+import random
 
 pygame.init()
 
@@ -12,6 +13,13 @@ screen_height = 400 + bottom_panel
 
 screen = pygame.display.set_mode((screen_width, screen_height))
 pygame.display.set_caption('Battle')
+
+
+# Define Game Variables
+current_fighter = 1
+total_fighters = 3
+action_cooldown = 0
+action_wait_time = 90
 
 
 # Define Fonts
@@ -98,6 +106,13 @@ class Fighter():
             self.frame_index = 0
         
 
+
+    def attack(self, target):
+        # Deal damage to enemy
+        rand = random.randint(-5, 5)
+        damage = self.strength + rand
+        target.hp -= damage
+
     def draw(self):
         screen.blit(self.image, self.rect)
 
@@ -149,12 +164,26 @@ while run:
     bandit1_health_bar.draw(bandit1.hp)
     bandit2_health_bar.draw(bandit2.hp)
 
+
     # Draw Fighters
     knight.update()
     knight.draw()
     for bandit in bandit_list:
         bandit.update()
         bandit.draw()
+
+
+    # Player Action
+    if knight.alive == True:
+        if current_fighter == 1:
+            action_cooldown += 1
+            if action_cooldown >= action_wait_time:
+                # Look for Player action
+                # Attack
+                knight.attack(bandit1)
+                current_fighter += 1
+                action_cooldown
+
 
     for event in pygame.event.get():
         if event.type == pygame.QUIT:

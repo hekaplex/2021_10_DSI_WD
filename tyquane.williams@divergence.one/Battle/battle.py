@@ -20,6 +20,9 @@ current_fighter = 1
 total_fighters = 3
 action_cooldown = 0
 action_wait_time = 90
+attack = False
+potion = False
+clicked = False
 
 
 # Define Fonts
@@ -34,6 +37,8 @@ green = (0, 255, 0)
 background_img = pygame.image.load('Assets/Battle/Background/background.png').convert_alpha()
 # Panel Image
 panel_img = pygame.image.load('Assets/Battle/Icons/panel.png').convert_alpha()
+# Sword Image
+sword_img = pygame.image.load('Assets/Battle/Icons/sword.png').convert_alpha()
 
 
 # Create Function for drawing text
@@ -120,6 +125,10 @@ class Fighter():
         rand = random.randint(-5, 5)
         damage = self.strength + rand
         target.hp -= damage
+        # Check if target has died
+        if target.hp < 1:
+            target.hp = 0
+            target.alive = False
         # Set variables to attack animation
         self.action = 1
         self.frame_index = 0
@@ -185,6 +194,22 @@ while run:
         bandit.update()
         bandit.draw()
 
+    # Reset Action Variables
+    # Reset Action Variables
+    attack = False
+    potion = False
+    target = None
+    pos = pygame.mouse.get_pos()
+    for count, bandit in enumerate(bandit_list):
+        if bandit.rect.collidepoint(pos):
+            # Hide Mouse
+            pygame.mouse.set_visible(False)
+            # Show Sword in plce of mouse cursor
+            screen.blit(sword_img, pos)
+
+
+
+
 
     # Player Action
     if knight.alive == True:
@@ -195,7 +220,8 @@ while run:
                 # Attack
                 knight.attack(bandit1)
                 current_fighter += 1
-                action_cooldown
+                action_cooldown = 0
+
 
     # Enemy Action
     for count, bandit in enumerate(bandit_list):
@@ -210,6 +236,9 @@ while run:
             else:
                 current_fighter += 1
 
+    # If all fighters have had a turn then reset
+    if current_fighter > total_fighters:
+        current_fighter = 1
 
 
     for event in pygame.event.get():

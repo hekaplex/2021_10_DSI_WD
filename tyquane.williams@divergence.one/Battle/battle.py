@@ -103,8 +103,16 @@ class Fighter():
             self.frame_index += 1
         # If the animation has run out then reset back to the start
         if self.frame_index >= len(self.animation_list[self.action]):
-            self.frame_index = 0
-        
+            self.idle()
+
+
+
+    def idle(self):
+        # Set variables to attack animation
+        self.action = 0
+        self.frame_index = 0
+        self.update_time = pygame.time.get_ticks()
+
 
 
     def attack(self, target):
@@ -112,6 +120,11 @@ class Fighter():
         rand = random.randint(-5, 5)
         damage = self.strength + rand
         target.hp -= damage
+        # Set variables to attack animation
+        self.action = 1
+        self.frame_index = 0
+        self.update_time = pygame.time.get_ticks()
+
 
     def draw(self):
         screen.blit(self.image, self.rect)
@@ -183,6 +196,20 @@ while run:
                 knight.attack(bandit1)
                 current_fighter += 1
                 action_cooldown
+
+    # Enemy Action
+    for count, bandit in enumerate(bandit_list):
+        if current_fighter == 2 + count:
+            if bandit.alive == True:
+                action_cooldown += 1
+                if action_cooldown >= action_wait_time:
+                    # Attack
+                    bandit.attack(knight)
+                    current_fighter += 1
+                    action_cooldown = 0
+            else:
+                current_fighter += 1
+
 
 
     for event in pygame.event.get():

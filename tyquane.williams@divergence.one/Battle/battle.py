@@ -100,9 +100,9 @@ class Fighter():
         screen.blit(self.image, self.rect)
 
 
-knight = Fighter(200, 260, 'Knight', 30, 10, 3)
-bandit1 = Fighter(550, 270, 'Bandit', 20, 6, 1)
-bandit2 = Fighter(700, 270, 'Bandit', 20, 6, 1)
+knight = Fighter(200, 260, 'Knight', 30, 10, 3) # This is where you can alter character attributes: Fighter(x, y, name, max_hp, strength, potions)
+bandit1 = Fighter(550, 270, 'Bandit', 20, 6, 1) # This is where you can alter character attributes: Fighter(x, y, name, max_hp, strength, potions)
+bandit2 = Fighter(700, 270, 'Bandit', 20, 6, 1) # This is where you can alter character attributes: Fighter(x, y, name, max_hp, strength, potions)
 
 bandit_list = []
 bandit_list.append(bandit1)

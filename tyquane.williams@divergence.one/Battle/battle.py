@@ -231,8 +231,8 @@ damage_text_group = pygame.sprite.Group()
 
 
 knight = Fighter(200, 260, 'Knight', 30, 10, 3) # This is where you can alter Knight's attributes: Fighter(x, y, name, max_hp, strength, potions)
-bandit1 = Fighter(550, 270, 'Bandit', 18, 6, 1) # This is where you can alter Bandit1's attributes: Fighter(x, y, name, max_hp, strength, potions)
-bandit2 = Fighter(700, 270, 'Bandit', 18, 6, 1) # This is where you can alter Bandit2's attributes: Fighter(x, y, name, max_hp, strength, potions)
+bandit1 = Fighter(550, 270, 'Bandit', 15, 7, 1) # This is where you can alter Bandit1's attributes: Fighter(x, y, name, max_hp, strength, potions)
+bandit2 = Fighter(700, 270, 'Bandit', 15, 7, 1) # This is where you can alter Bandit2's attributes: Fighter(x, y, name, max_hp, strength, potions)
 
 bandit_list = []
 bandit_list.append(bandit1)
@@ -392,7 +392,6 @@ while run:
     pygame.display.update()
 
 pygame.quit()
-
 
 
 

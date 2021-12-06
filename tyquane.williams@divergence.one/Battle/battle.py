@@ -1,5 +1,6 @@
 import pygame
 import random
+import button # This is being imported from the button.py file in the Battle folder
 
 pygame.init()
 
@@ -37,6 +38,8 @@ green = (0, 255, 0)
 background_img = pygame.image.load('Assets/Battle/Background/background.png').convert_alpha()
 # Panel Image
 panel_img = pygame.image.load('Assets/Battle/Icons/panel.png').convert_alpha()
+# Button Images
+potion_img = pygame.image.load('Assets/Battle/Icons/potion.png').convert_alpha()
 # Sword Image
 sword_img = pygame.image.load('Assets/Battle/Icons/sword.png').convert_alpha()
 
@@ -171,6 +174,9 @@ knight_health_bar = HealthBar(100, screen_height - bottom_panel + 40, knight.hp,
 bandit1_health_bar = HealthBar(550, screen_height - bottom_panel + 40, bandit1.hp, bandit1.max_hp)
 bandit2_health_bar = HealthBar(550, screen_height - bottom_panel + 100, bandit2.hp, bandit2.max_hp)
 
+# Create Buttons
+potion_button = button.Button(screen, 100, screen_height - bottom_panel + 70, potion_img, 64, 64)
+
 
 run = True
 while run:
@@ -211,7 +217,7 @@ while run:
             if clicked == True:
                 attack = True
                 target = bandit_list[count]
-
+    potion_button.draw()
 
 
     # Player Action

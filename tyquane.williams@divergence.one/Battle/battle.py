@@ -177,6 +177,15 @@ class Fighter():
         self.update_time = pygame.time.get_ticks()
 
 
+    def reset(self):
+        self.alive = True
+        self.potions = self.start_portions
+        self.hp = self.max_hp
+        self.frame_index = 0
+        self.action = 0
+        self.update_time = pygame.time.get_ticks()
+
+
     def draw(self):
         screen.blit(self.image, self.rect)
 
@@ -221,9 +230,9 @@ damage_text_group = pygame.sprite.Group()
 
 
 
-knight = Fighter(200, 260, 'Knight', 3, 10, 3) # This is where you can alter Knight's attributes: Fighter(x, y, name, max_hp, strength, potions)
-bandit1 = Fighter(550, 270, 'Bandit', 20, 6, 1) # This is where you can alter Bandit1's attributes: Fighter(x, y, name, max_hp, strength, potions)
-bandit2 = Fighter(700, 270, 'Bandit', 20, 6, 1) # This is where you can alter Bandit2's attributes: Fighter(x, y, name, max_hp, strength, potions)
+knight = Fighter(200, 260, 'Knight', 30, 10, 3) # This is where you can alter Knight's attributes: Fighter(x, y, name, max_hp, strength, potions)
+bandit1 = Fighter(550, 270, 'Bandit', 18, 6, 1) # This is where you can alter Bandit1's attributes: Fighter(x, y, name, max_hp, strength, potions)
+bandit2 = Fighter(700, 270, 'Bandit', 18, 6, 1) # This is where you can alter Bandit2's attributes: Fighter(x, y, name, max_hp, strength, potions)
 
 bandit_list = []
 bandit_list.append(bandit1)
@@ -364,7 +373,12 @@ while run:
         if game_over == -1:
             screen.blit(defeat_img, (290, 50))
         if restart_button.draw():
-            pass
+            knight.reset()
+            for bandit in bandit_list:
+                bandit.reset()
+            current_fighter = 1
+            action_cooldown
+            game_over = 0
 
 
     for event in pygame.event.get():

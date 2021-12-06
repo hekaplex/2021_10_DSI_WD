@@ -42,6 +42,7 @@ background_img = pygame.image.load('Assets/Battle/Background/background.png').co
 panel_img = pygame.image.load('Assets/Battle/Icons/panel.png').convert_alpha()
 # Button Image
 potion_img = pygame.image.load('Assets/Battle/Icons/potion.png').convert_alpha()
+restart_img = pygame.image.load('Assets/Battle/Icons/restart.png').convert_alpha()
 # Load Victory and Defeat Image
 victory_img = pygame.image.load('Assets/Battle/Icons/victory.png').convert_alpha()
 defeat_img = pygame.image.load('Assets/Battle/Icons/defeat.png').convert_alpha()
@@ -234,6 +235,7 @@ bandit2_health_bar = HealthBar(550, screen_height - bottom_panel + 100, bandit2.
 
 # Create Buttons
 potion_button = button.Button(screen, 100, screen_height - bottom_panel + 70, potion_img, 64, 64)
+restart_button = button.Button(screen, 330, 120, restart_img, 120, 30)
 
 
 run = True
@@ -361,6 +363,8 @@ while run:
             screen.blit(victory_img, (250, 50))
         if game_over == -1:
             screen.blit(defeat_img, (290, 50))
+        if restart_button.draw():
+            pass
 
 
     for event in pygame.event.get():

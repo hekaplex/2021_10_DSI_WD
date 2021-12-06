@@ -23,6 +23,7 @@ action_cooldown = 0
 action_wait_time = 90
 attack = False
 potion = False
+potion_effect = 15
 clicked = False
 
 
@@ -75,7 +76,7 @@ class Fighter():
         self.hp = max_hp
         self.strength = strength
         self.start_portions = potions
-        self.portions = potions
+        self.potions = potions
         self.alive = True
         self.animation_list = []
         self.frame_index = 0
@@ -217,7 +218,8 @@ while run:
             if clicked == True:
                 attack = True
                 target = bandit_list[count]
-    potion_button.draw()
+    if potion_button.draw():
+        potion = True
 
 
     # Player Action
@@ -231,7 +233,19 @@ while run:
                     knight.attack(target) # This is who is being attacked. This is choosen by who the Player has clicked on.
                     current_fighter += 1
                     action_cooldown = 0
-
+                # Potion
+                if potion == True:
+                    if knight.potions > 0:
+                        # Check if the potion would heal the Player beyond max health
+                        if knight.max_hp - knight.hp > potion_effect:
+                            heal_amount = potion_effect
+                        else:
+                            heal_amount = knight.max_hp - knight.hp
+                        knight.hp += heal_amount
+                        knight.potions -= 1
+                        current_fighter += 1
+                        action_cooldown = 0
+                    
 
     # Enemy Action
     for count, bandit in enumerate(bandit_list):

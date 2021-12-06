@@ -131,10 +131,10 @@ bandit_list = []
 bandit_list.append(bandit1)
 bandit_list.append(bandit2)
 
-
 knight_health_bar = HealthBar(100, screen_height - bottom_panel + 40, knight.hp, knight.max_hp)
 bandit1_health_bar = HealthBar(550, screen_height - bottom_panel + 40, bandit1.hp, bandit1.max_hp)
 bandit2_health_bar = HealthBar(550, screen_height - bottom_panel + 100, bandit2.hp, bandit2.max_hp)
+
 
 run = True
 while run:

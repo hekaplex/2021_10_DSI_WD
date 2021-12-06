@@ -113,8 +113,12 @@ class HealthBar():
 
 
     def draw(self, hp):
+        # Update with new health
+        self.hp = hp
+        # Calculate Health Ratio
+        ratio = self.hp / self.max_hp
         pygame.draw.rect(screen, red, (self.x, self.y, 150, 20))
-
+        pygame.draw.rect(screen, green, (self.x, self.y, 150 * ratio, 20))
 
 
 

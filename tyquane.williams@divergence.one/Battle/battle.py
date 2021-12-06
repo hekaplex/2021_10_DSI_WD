@@ -1,3 +1,4 @@
+from os import truncate
 import pygame
 import random
 import button # This is being imported from the button.py file in the Battle folder
@@ -25,7 +26,7 @@ attack = False
 potion = False
 potion_effect = 15
 clicked = False
-
+game_over = 0
 
 # Define Fonts
 font = pygame.font.SysFont('Times New Roman', 26)
@@ -39,8 +40,11 @@ green = (0, 255, 0)
 background_img = pygame.image.load('Assets/Battle/Background/background.png').convert_alpha()
 # Panel Image
 panel_img = pygame.image.load('Assets/Battle/Icons/panel.png').convert_alpha()
-# Button Images
+# Button Image
 potion_img = pygame.image.load('Assets/Battle/Icons/potion.png').convert_alpha()
+# Load Victory and Defeat Image
+victory_img = pygame.image.load('Assets/Battle/Icons/victory.png').convert_alpha()
+defeat_img = pygame.image.load('Assets/Battle/Icons/defeat.png').convert_alpha()
 # Sword Image
 sword_img = pygame.image.load('Assets/Battle/Icons/sword.png').convert_alpha()
 
@@ -216,9 +220,9 @@ damage_text_group = pygame.sprite.Group()
 
 
 
-knight = Fighter(200, 260, 'Knight', 30, 10, 3) # This is where you can alter Knight's attributes: Fighter(x, y, name, max_hp, strength, potions)
-bandit1 = Fighter(550, 270, 'Bandit', 2, 6, 1) # This is where you can alter Bandit1's attributes: Fighter(x, y, name, max_hp, strength, potions)
-bandit2 = Fighter(700, 270, 'Bandit', 2, 6, 1) # This is where you can alter Bandit2's attributes: Fighter(x, y, name, max_hp, strength, potions)
+knight = Fighter(200, 260, 'Knight', 3, 10, 3) # This is where you can alter Knight's attributes: Fighter(x, y, name, max_hp, strength, potions)
+bandit1 = Fighter(550, 270, 'Bandit', 20, 6, 1) # This is where you can alter Bandit1's attributes: Fighter(x, y, name, max_hp, strength, potions)
+bandit2 = Fighter(700, 270, 'Bandit', 20, 6, 1) # This is where you can alter Bandit2's attributes: Fighter(x, y, name, max_hp, strength, potions)
 
 bandit_list = []
 bandit_list.append(bandit1)
@@ -281,63 +285,82 @@ while run:
     draw_text(str(knight.potions), font, red, 150, screen_height - bottom_panel + 70)
 
 
-    # Player Action
-    if knight.alive == True:
-        if current_fighter == 1:
-            action_cooldown += 1
-            if action_cooldown >= action_wait_time:
-                # Look For Player action
-                # Attack
-                if attack == True and target != None:
-                    knight.attack(target) # This is who is being attacked. This is choosen by who the Player has clicked on.
-                    current_fighter += 1
-                    action_cooldown = 0
-                # Potion
-                if potion == True:
-                    if knight.potions > 0:
-                        # Check if the potion would heal the Player beyond max health
-                        if knight.max_hp - knight.hp > potion_effect:
-                            heal_amount = potion_effect
-                        else:
-                            heal_amount = knight.max_hp - knight.hp
-                        knight.hp += heal_amount
-                        knight.potions -= 1
-                        damage_text = DamageText(knight.rect.centerx, knight.rect.y, str(heal_amount), green)
-                        damage_text_group.add(damage_text)
-                        current_fighter += 1
-                        action_cooldown = 0
-                    
-
-    # Enemy Action
-    for count, bandit in enumerate(bandit_list):
-        if current_fighter == 2 + count:
-            if bandit.alive == True:
+    if game_over == 0:
+        # Player Action
+        if knight.alive == True:
+            if current_fighter == 1:
                 action_cooldown += 1
                 if action_cooldown >= action_wait_time:
-                    # Check if bandit needs to heal first
-                    if (bandit.hp / bandit.max_hp) < 0.5 and bandit.potions > 0:
-                        # Check if the potion would heal the Bandit beyond max health
-                        if bandit.max_hp - bandit.hp > potion_effect:
-                            heal_amount = potion_effect
-                        else:
-                            heal_amount = bandit.max_hp - bandit.hp
-                        bandit.hp += heal_amount
-                        bandit.potions -= 1
-                        damage_text = DamageText(bandit.rect.centerx, bandit.rect.y, str(heal_amount), green)
-                        damage_text_group.add(damage_text)
-                        current_fighter += 1
-                        action_cooldown = 0
+                    # Look For Player action
                     # Attack
-                    else:
-                        bandit.attack(knight)
+                    if attack == True and target != None:
+                        knight.attack(target) # This is who is being attacked. This is choosen by who the Player has clicked on.
                         current_fighter += 1
                         action_cooldown = 0
-            else:
-                current_fighter += 1
+                    # Potion
+                    if potion == True:
+                        if knight.potions > 0:
+                            # Check if the potion would heal the Player beyond max health
+                            if knight.max_hp - knight.hp > potion_effect:
+                                heal_amount = potion_effect
+                            else:
+                                heal_amount = knight.max_hp - knight.hp
+                            knight.hp += heal_amount
+                            knight.potions -= 1
+                            damage_text = DamageText(knight.rect.centerx, knight.rect.y, str(heal_amount), green)
+                            damage_text_group.add(damage_text)
+                            current_fighter += 1
+                            action_cooldown = 0
+        else:
+            game_over = -1                
 
-    # If all fighters have had a turn then reset
-    if current_fighter > total_fighters:
-        current_fighter = 1
+        # Enemy Action
+        for count, bandit in enumerate(bandit_list):
+            if current_fighter == 2 + count:
+                if bandit.alive == True:
+                    action_cooldown += 1
+                    if action_cooldown >= action_wait_time:
+                        # Check if bandit needs to heal first
+                        if (bandit.hp / bandit.max_hp) < 0.5 and bandit.potions > 0:
+                            # Check if the potion would heal the Bandit beyond max health
+                            if bandit.max_hp - bandit.hp > potion_effect:
+                                heal_amount = potion_effect
+                            else:
+                                heal_amount = bandit.max_hp - bandit.hp
+                            bandit.hp += heal_amount
+                            bandit.potions -= 1
+                            damage_text = DamageText(bandit.rect.centerx, bandit.rect.y, str(heal_amount), green)
+                            damage_text_group.add(damage_text)
+                            current_fighter += 1
+                            action_cooldown = 0
+                        # Attack
+                        else:
+                            bandit.attack(knight)
+                            current_fighter += 1
+                            action_cooldown = 0
+                else:
+                    current_fighter += 1
+
+        # If all fighters have had a turn then reset
+        if current_fighter > total_fighters:
+            current_fighter = 1
+
+
+    # Check if all of the Bandits are dead
+    alive_bandits = 0
+    for bandit in bandit_list:
+        if bandit.alive == True:
+            alive_bandits += 1
+    if alive_bandits == 0:
+        game_over = 1
+
+
+    # Check if game is over
+    if game_over != 0:
+        if game_over == 1:
+            screen.blit(victory_img, (250, 50))
+        if game_over == -1:
+            screen.blit(defeat_img, (290, 50))
 
 
     for event in pygame.event.get():

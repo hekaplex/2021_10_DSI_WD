@@ -1,4 +1,3 @@
-#from _typeshed import Self
 import pygame
 
 pygame.init()

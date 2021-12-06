@@ -126,7 +126,10 @@ class Fighter():
             self.frame_index += 1
         # If the animation has run out then reset back to the start
         if self.frame_index >= len(self.animation_list[self.action]):
-            self.idle()
+            if self.action == 3:
+                self.frame_index = len(self.animation_list[self.action]) - 1
+            else:
+                self.idle()
 
 
     def idle(self):
@@ -269,7 +272,7 @@ while run:
             pygame.mouse.set_visible(False)
             # Show Sword in plce of mouse cursor
             screen.blit(sword_img, pos)
-            if clicked == True:
+            if clicked == True and bandit.alive == True:
                 attack = True
                 target = bandit_list[count]
     if potion_button.draw():

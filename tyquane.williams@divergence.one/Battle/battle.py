@@ -96,6 +96,13 @@ class Fighter():
             img = pygame.transform.scale(img, (img.get_width() * 3, img.get_height() * 3))
             temp_list.append(img)
         self.animation_list.append(temp_list)
+        # Load Hurt Images
+        temp_list = []
+        for i in range(3): # The number of images in list equals 3 but you can change that depending on the amount of images you want cycled through in the actual folder
+            img = pygame.image.load(f'Assets/Battle/{self.name}/Hurt/{i}.png') # {self.name} is the class for the Knight images located in the Assets/Battle/Knight. f is needed
+            img = pygame.transform.scale(img, (img.get_width() * 3, img.get_height() * 3))
+            temp_list.append(img)
+        self.animation_list.append(temp_list)
         self.image = self.animation_list[self.action][self.frame_index]
         self.rect = self.image.get_rect()
         self.rect.center = (x, y)
@@ -115,13 +122,11 @@ class Fighter():
             self.idle()
 
 
-
     def idle(self):
-        # Set variables to attack animation
+        # Set variables to idle animation
         self.action = 0
         self.frame_index = 0
         self.update_time = pygame.time.get_ticks()
-
 
 
     def attack(self, target):
@@ -130,6 +135,7 @@ class Fighter():
         damage = self.strength + rand
         target.hp -= damage
         # Check if target has died
+        target.hurt()
         if target.hp < 1:
             target.hp = 0
             target.alive = False
@@ -137,6 +143,13 @@ class Fighter():
         damage_text_group.add(damage_text)
         # Set variables to attack animation
         self.action = 1
+        self.frame_index = 0
+        self.update_time = pygame.time.get_ticks()
+
+
+    def hurt(self):
+        # Set variables to hurt animation
+        self.action = 2
         self.frame_index = 0
         self.update_time = pygame.time.get_ticks()
 

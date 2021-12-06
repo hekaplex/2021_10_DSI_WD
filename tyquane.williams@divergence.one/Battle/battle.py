@@ -1,3 +1,4 @@
+#from _typeshed import Self
 import pygame
 
 pygame.init()
@@ -45,6 +46,9 @@ def draw_panel():
     screen.blit(panel_img, (0, screen_height - bottom_panel))
     # Show Knight Stats
     draw_text(f'{knight.name} HP: {knight.hp}', font, red, 100, screen_height - bottom_panel +  10)
+    for count, i in enumerate(bandit_list):
+        # Show name and health
+        draw_text(f'{i.name} HP: {i.hp}', font, red, 550, (screen_height - bottom_panel + 10) + count * 60)
 
 
 
@@ -95,19 +99,38 @@ class Fighter():
             self.frame_index = 0
         
 
-
     def draw(self):
         screen.blit(self.image, self.rect)
 
 
-knight = Fighter(200, 260, 'Knight', 30, 10, 3) # This is where you can alter character attributes: Fighter(x, y, name, max_hp, strength, potions)
-bandit1 = Fighter(550, 270, 'Bandit', 20, 6, 1) # This is where you can alter character attributes: Fighter(x, y, name, max_hp, strength, potions)
-bandit2 = Fighter(700, 270, 'Bandit', 20, 6, 1) # This is where you can alter character attributes: Fighter(x, y, name, max_hp, strength, potions)
+
+class HealthBar():
+    def __init__(self, x, y, hp, max_hp):
+        self.x = x
+        self.y = y
+        self.hp = hp
+        self.max_hp = max_hp
+
+
+    def draw(self, hp):
+        pygame.draw.rect(screen, red, (self.x, self.y, 150, 20))
+
+
+
+
+
+knight = Fighter(200, 260, 'Knight', 30, 10, 3) # This is where you can alter Knight's attributes: Fighter(x, y, name, max_hp, strength, potions)
+bandit1 = Fighter(550, 270, 'Bandit', 20, 6, 1) # This is where you can alter Bandit1's attributes: Fighter(x, y, name, max_hp, strength, potions)
+bandit2 = Fighter(700, 270, 'Bandit', 20, 6, 1) # This is where you can alter Bandit2's attributes: Fighter(x, y, name, max_hp, strength, potions)
 
 bandit_list = []
 bandit_list.append(bandit1)
 bandit_list.append(bandit2)
 
+
+knight_health_bar = HealthBar(100, screen_height - bottom_panel + 40, knight.hp, knight.max_hp)
+bandit1_health_bar = HealthBar(550, screen_height - bottom_panel + 40, bandit1.hp, bandit1.max_hp)
+bandit2_health_bar = HealthBar(550, screen_height - bottom_panel + 100, bandit2.hp, bandit2.max_hp)
 
 run = True
 while run:
@@ -119,6 +142,9 @@ while run:
 
     # Draw Panel
     draw_panel()
+    knight_health_bar.draw(knight.hp)
+    bandit1_health_bar.draw(bandit1.hp)
+    bandit2_health_bar.draw(bandit2.hp)
 
     # Draw Fighters
     knight.update()

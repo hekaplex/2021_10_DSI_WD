@@ -103,6 +103,13 @@ class Fighter():
             img = pygame.transform.scale(img, (img.get_width() * 3, img.get_height() * 3))
             temp_list.append(img)
         self.animation_list.append(temp_list)
+        # Load Death Images
+        temp_list = []
+        for i in range(10): # The number of images in list equals 10 but you can change that depending on the amount of images you want cycled through in the actual folder
+            img = pygame.image.load(f'Assets/Battle/{self.name}/Death/{i}.png') # {self.name} is the class for the Knight images located in the Assets/Battle/Knight. f is needed
+            img = pygame.transform.scale(img, (img.get_width() * 3, img.get_height() * 3))
+            temp_list.append(img)
+        self.animation_list.append(temp_list)
         self.image = self.animation_list[self.action][self.frame_index]
         self.rect = self.image.get_rect()
         self.rect.center = (x, y)
@@ -139,6 +146,7 @@ class Fighter():
         if target.hp < 1:
             target.hp = 0
             target.alive = False
+            target.death()
         damage_text = DamageText(target.rect.centerx, target.rect.y, str(damage), red)
         damage_text_group.add(damage_text)
         # Set variables to attack animation
@@ -150,6 +158,13 @@ class Fighter():
     def hurt(self):
         # Set variables to hurt animation
         self.action = 2
+        self.frame_index = 0
+        self.update_time = pygame.time.get_ticks()
+
+
+    def death(self):
+        # Set variables to death animation
+        self.action = 3
         self.frame_index = 0
         self.update_time = pygame.time.get_ticks()
 
@@ -199,8 +214,8 @@ damage_text_group = pygame.sprite.Group()
 
 
 knight = Fighter(200, 260, 'Knight', 30, 10, 3) # This is where you can alter Knight's attributes: Fighter(x, y, name, max_hp, strength, potions)
-bandit1 = Fighter(550, 270, 'Bandit', 20, 6, 1) # This is where you can alter Bandit1's attributes: Fighter(x, y, name, max_hp, strength, potions)
-bandit2 = Fighter(700, 270, 'Bandit', 20, 6, 1) # This is where you can alter Bandit2's attributes: Fighter(x, y, name, max_hp, strength, potions)
+bandit1 = Fighter(550, 270, 'Bandit', 2, 6, 1) # This is where you can alter Bandit1's attributes: Fighter(x, y, name, max_hp, strength, potions)
+bandit2 = Fighter(700, 270, 'Bandit', 2, 6, 1) # This is where you can alter Bandit2's attributes: Fighter(x, y, name, max_hp, strength, potions)
 
 bandit_list = []
 bandit_list.append(bandit1)

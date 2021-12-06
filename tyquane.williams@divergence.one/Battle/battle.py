@@ -255,10 +255,22 @@ while run:
             if bandit.alive == True:
                 action_cooldown += 1
                 if action_cooldown >= action_wait_time:
+                    # Check if bandit needs to heal first
+                    if (bandit.hp / bandit.max_hp) < 0.5 and bandit.potions > 0:
+                        # Check if the potion would heal the Bandit beyond max health
+                        if bandit.max_hp - bandit.hp > potion_effect:
+                            heal_amount = potion_effect
+                        else:
+                            heal_amount = bandit.max_hp - bandit.hp
+                        bandit.hp += heal_amount
+                        knight.potions -= 1
+                        current_fighter += 1
+                        action_cooldown = 0
                     # Attack
-                    bandit.attack(knight)
-                    current_fighter += 1
-                    action_cooldown = 0
+                    else:
+                        bandit.attack(knight)
+                        current_fighter += 1
+                        action_cooldown = 0
             else:
                 current_fighter += 1
 

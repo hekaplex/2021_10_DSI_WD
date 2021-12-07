@@ -15,8 +15,14 @@ class Test_button(Button):
             parent = scene,
             model = 'cube',
             texture = 'brick',
-            color = color.blue)
+            color = color.blue,
+            highlight_color = color.red,
+            pressed_color = color.lime)
 
+    def input(self, key):
+        if self.hovered:
+            if key == 'left mouse down':
+                print('button pressed')
 
 def update():
     if held_keys['a']:

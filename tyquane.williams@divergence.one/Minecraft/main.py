@@ -29,3 +29,5 @@ for z in range(20):
 player = FirstPersonController()
 
 app.run()
+
+# OpenGL 1.1 is not supported. You will need to switch computers to finish this project.

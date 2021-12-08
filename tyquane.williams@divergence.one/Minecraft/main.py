@@ -8,10 +8,10 @@ class Voxel(Button):
             position = position,
             model = 'cube',
             origin_y = 0.5,
-            texture = 'white_cube',
+            texture = 'grass_texture',
             color = color.color(0,0,random.uniform(0.9,1)),
             highlight_color = color.lime)
-
+            
     def input(self,key):
         if self.hovered:
             if key == 'left mouse down':

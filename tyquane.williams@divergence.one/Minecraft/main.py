@@ -8,7 +8,7 @@ class Voxel(Button):
             position = position,
             model = 'cube',
             origin_y = 0.5,
-            texture = 'grass_texture',
+            texture = 'white_cube',
             color = color.color(0,0,random.uniform(0.9,1)),
             highlight_color = color.lime)
             

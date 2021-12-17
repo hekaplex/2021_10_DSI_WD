@@ -44,12 +44,33 @@ for the item.
 
 import random
 
-with open("C:\\Users\\Hoegi\\Documents\\Divergence Work\\Python\\Exercise Files\\wizard_all_items.txt","r") as file:
-    print(file.read())
-
+AVAILABLE_ITEMS = "C:\\Users\\Hoegi\\Documents\\Divergence Work\\Python\\Exercise Files\\wizard_all_items.txt"
+CURRENT_INVENTORY = "C:\\Users\\Hoegi\\Documents\\Divergence Work\\Python\\Exercise Files\\wizard_inventory.txt"
 
 def welcome():
     print("\nThe Wizard Inventory Program")
+
+def readItems():
+    items = []
+    with open("C:\\Users\\Hoegi\\Documents\\Divergence Work\\Python\\Exercise Files\\wizard_all_items.txt","r") as file:
+        for line in file:
+            line = line.replace("\n","")
+            items.append(line)
+    return items
+
+def readInventory():
+    inventory = []
+    with open("C:\\Users\\Hoegi\\Documents\\Divergence Work\\Python\\Exercise Files\\wizard_all_items.txt","r") as file:
+        for line in file:
+            line = line.replace("\n","")
+            inventory.append(line)
+    return inventory
+
+def writeInventory():
+    inventory = []
+    with open("C:\\Users\\Hoegi\\Documents\\Divergence Work\\Python\\Exercise Files\\wizard_all_items.txt","w") as file:
+        for item in file:
+            file.write(item + "\n")
 
 def commandMenu():
     print("\nCOMMAND MENU")
@@ -74,8 +95,8 @@ def walk(inventory):
     
 
 
-    if len(inventory) <= 3:
-        inventory.append(itemToGrab)
+    if len(inventory) <= 4:
+        inventory.append(randomItem)
     else:
         print("Inventory is full.  You must drop an item in order to gain a new one.")
 
@@ -85,34 +106,31 @@ pick one of those items, and give the user the option to grab it. To create a li
 items that aren’t already in the wizard’s inventory, you can use a list comprehension 
 as described in chapter 6. '''
 
-def edit(inventory):
-    itemToEdit = input("Which item do you want to edit?\n\t")
-    itemEditIndex = inventory.index(itemToEdit)
-    inventory.remove(itemToEdit) 
-    inventory.insert(itemEditIndex,input("Enter new name for item:\n\t"))
-
 def drop(inventory):
     itemToDrop = input("Which item do you want to drop?\n\t")
-    if itemToDrop in inventory:
-        inventory.remove(itemToDrop)
-        print(f"{itemToDrop} was dropped from the inventory.")
-    else:
-        print("Item not in inventory. Look at list and try again.")
+    while True:
+        if itemToDrop in inventory:
+            inventory.remove(itemToDrop)
+            print(f"{itemToDrop} was dropped from the inventory.")
+            break
+        else:
+            print("Item not in inventory. Look at list and try again.")
 
 def main():
     welcome()
-    inventory4Slots = ["Funny Hat","Man-jams","Curly Shoes"]
+    
+    inventory = readInventory()
     
     returnToCommand = "y"
     while returnToCommand == "y":
         commandMenuSelection = commandMenu()
         
         if commandMenuSelection.lower() == "show":
-            show(inventory4Slots)
+            show(inventory)
         elif commandMenuSelection.lower() == "walk":
-            walk(inventory4Slots)
+            walk(inventory)
         elif commandMenuSelection.lower() == "drop":
-            drop(inventory4Slots)
+            drop(inventory)
         elif commandMenuSelection.lower() == "exit":
             break
         
